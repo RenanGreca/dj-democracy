@@ -1,0 +1,281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C8A0EAA4185290AB006C1EB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA3185290AB006C1EB2 /* UIKit.framework */; };
+		C8A0EAA6185290AB006C1EB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA5185290AB006C1EB2 /* Foundation.framework */; };
+		C8A0EAA8185290AB006C1EB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA7185290AB006C1EB2 /* CoreGraphics.framework */; };
+		C8A0EAAE185290AC006C1EB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A0EAAC185290AC006C1EB2 /* InfoPlist.strings */; };
+		C8A0EAB0185290AC006C1EB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAAF185290AC006C1EB2 /* main.m */; };
+		C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */; };
+		C8A0EAB7185290AC006C1EB2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A0EAB5185290AC006C1EB2 /* MainStoryboard.storyboard */; };
+		C8A0EABA185290AC006C1EB2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAB9185290AC006C1EB2 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C8A0EA9F185290AB006C1EB2 /* DJDemocracyClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A0EAA3185290AB006C1EB2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C8A0EAA5185290AB006C1EB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C8A0EAA7185290AB006C1EB2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C8A0EAAB185290AB006C1EB2 /* DJDemocracyClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DJDemocracyClient-Info.plist"; sourceTree = "<group>"; };
+		C8A0EAAD185290AC006C1EB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8A0EAAF185290AC006C1EB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C8A0EAB1185290AC006C1EB2 /* DJDemocracyClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJDemocracyClient-Prefix.pch"; sourceTree = "<group>"; };
+		C8A0EAB2185290AC006C1EB2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C8A0EAB6185290AC006C1EB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		C8A0EAB8185290AC006C1EB2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C8A0EAB9185290AC006C1EB2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C8A0EA9C185290AB006C1EB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A0EAA4185290AB006C1EB2 /* UIKit.framework in Frameworks */,
+				C8A0EAA6185290AB006C1EB2 /* Foundation.framework in Frameworks */,
+				C8A0EAA8185290AB006C1EB2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C8A0EA94185290AB006C1EB2 = {
+			isa = PBXGroup;
+			children = (
+				C8A0EAA9185290AB006C1EB2 /* DJDemocracyClient */,
+				C8A0EAA2185290AB006C1EB2 /* Frameworks */,
+				C8A0EAA0185290AB006C1EB2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C8A0EAA0185290AB006C1EB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8A0EA9F185290AB006C1EB2 /* DJDemocracyClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C8A0EAA2185290AB006C1EB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8A0EAA3185290AB006C1EB2 /* UIKit.framework */,
+				C8A0EAA5185290AB006C1EB2 /* Foundation.framework */,
+				C8A0EAA7185290AB006C1EB2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8A0EAA9185290AB006C1EB2 /* DJDemocracyClient */ = {
+			isa = PBXGroup;
+			children = (
+				C8A0EAB2185290AC006C1EB2 /* AppDelegate.h */,
+				C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */,
+				C8A0EAB5185290AC006C1EB2 /* MainStoryboard.storyboard */,
+				C8A0EAB8185290AC006C1EB2 /* ViewController.h */,
+				C8A0EAB9185290AC006C1EB2 /* ViewController.m */,
+				C8A0EAAA185290AB006C1EB2 /* Supporting Files */,
+			);
+			path = DJDemocracyClient;
+			sourceTree = "<group>";
+		};
+		C8A0EAAA185290AB006C1EB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8A0EAAB185290AB006C1EB2 /* DJDemocracyClient-Info.plist */,
+				C8A0EAAC185290AC006C1EB2 /* InfoPlist.strings */,
+				C8A0EAAF185290AC006C1EB2 /* main.m */,
+				C8A0EAB1185290AC006C1EB2 /* DJDemocracyClient-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C8A0EA9E185290AB006C1EB2 /* DJDemocracyClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8A0EABD185290AC006C1EB2 /* Build configuration list for PBXNativeTarget "DJDemocracyClient" */;
+			buildPhases = (
+				C8A0EA9B185290AB006C1EB2 /* Sources */,
+				C8A0EA9C185290AB006C1EB2 /* Frameworks */,
+				C8A0EA9D185290AB006C1EB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DJDemocracyClient;
+			productName = DJDemocracyClient;
+			productReference = C8A0EA9F185290AB006C1EB2 /* DJDemocracyClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C8A0EA96185290AB006C1EB2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C8A0EA99185290AB006C1EB2 /* Build configuration list for PBXProject "DJDemocracyClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C8A0EA94185290AB006C1EB2;
+			productRefGroup = C8A0EAA0185290AB006C1EB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C8A0EA9E185290AB006C1EB2 /* DJDemocracyClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C8A0EA9D185290AB006C1EB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A0EAAE185290AC006C1EB2 /* InfoPlist.strings in Resources */,
+				C8A0EAB7185290AC006C1EB2 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C8A0EA9B185290AB006C1EB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A0EAB0185290AC006C1EB2 /* main.m in Sources */,
+				C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */,
+				C8A0EABA185290AC006C1EB2 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C8A0EAAC185290AC006C1EB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8A0EAAD185290AC006C1EB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C8A0EAB5185290AC006C1EB2 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8A0EAB6185290AC006C1EB2 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C8A0EABB185290AC006C1EB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C8A0EABC185290AC006C1EB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C8A0EABE185290AC006C1EB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DJDemocracyClient/DJDemocracyClient-Prefix.pch";
+				INFOPLIST_FILE = "DJDemocracyClient/DJDemocracyClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C8A0EABF185290AC006C1EB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DJDemocracyClient/DJDemocracyClient-Prefix.pch";
+				INFOPLIST_FILE = "DJDemocracyClient/DJDemocracyClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C8A0EA99185290AB006C1EB2 /* Build configuration list for PBXProject "DJDemocracyClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A0EABB185290AC006C1EB2 /* Debug */,
+				C8A0EABC185290AC006C1EB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8A0EABD185290AC006C1EB2 /* Build configuration list for PBXNativeTarget "DJDemocracyClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A0EABE185290AC006C1EB2 /* Debug */,
+				C8A0EABF185290AC006C1EB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C8A0EA96185290AB006C1EB2 /* Project object */;
+}
