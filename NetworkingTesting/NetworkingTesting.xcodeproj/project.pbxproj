@@ -20,6 +20,7 @@
 		6E966A210F4FA84E002C9CEF /* ServerRunningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E966A200F4FA84E002C9CEF /* ServerRunningView.xib */; };
 		6EC4F8220F65DC3400360199 /* ServerBrowserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F8210F65DC3400360199 /* ServerBrowserView.xib */; };
 		6EC4F8500F65DD2300360199 /* ServerBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4F84C0F65DD2300360199 /* ServerBrowserTableViewController.m */; };
+		C864BD4B185294A400BF14D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C864BD4A185294A400BF14D5 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		6EC4F8320F65DCF500360199 /* ServerBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBrowserTableViewController.h; sourceTree = "<group>"; };
 		6EC4F84C0F65DD2300360199 /* ServerBrowserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBrowserTableViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C864BD4A185294A400BF14D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C864BD4A185294A400BF14D5 /* Default-568h@2x.png */,
 				6E189C820F4F3747001FA025 /* Server */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -193,6 +196,7 @@
 				6E966A210F4FA84E002C9CEF /* ServerRunningView.xib in Resources */,
 				1FCE602E185282B900FF7553 /* SongSelectionView.xib in Resources */,
 				6EC4F8220F65DC3400360199 /* ServerBrowserView.xib in Resources */,
+				C864BD4B185294A400BF14D5 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
