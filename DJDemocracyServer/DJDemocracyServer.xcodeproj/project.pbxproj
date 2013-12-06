@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAB2B3DF185288E100E4C2CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2B3DE185288E100E4C2CD /* Cocoa.framework */; };
+		AAB2B3E9185288E100E4C2CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */; };
+		AAB2B3EB185288E100E4C2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B3EA185288E100E4C2CD /* main.m */; };
+		AAB2B3EF185288E100E4C2CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3ED185288E100E4C2CD /* Credits.rtf */; };
+		AAB2B3F2185288E100E4C2CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B3F1185288E100E4C2CD /* AppDelegate.m */; };
+		AAB2B3F5185288E200E4C2CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3F3185288E200E4C2CD /* MainMenu.xib */; };
+		AAB2B40A18528C8400E4C2CD /* EyeTunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2B40918528C8400E4C2CD /* EyeTunes.framework */; };
+		AAB2B40B18528CAC00E4C2CD /* EyeTunes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AAB2B40918528C8400E4C2CD /* EyeTunes.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AAB2B3FD1852891300E4C2CD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAB2B40B18528CAC00E4C2CD /* EyeTunes.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAB2B3DE185288E100E4C2CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		AAB2B3E1185288E100E4C2CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		AAB2B3E2185288E100E4C2CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AAB2B3E3185288E100E4C2CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AAB2B3E6185288E100E4C2CD /* DJDemocracyServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DJDemocracyServer-Info.plist"; sourceTree = "<group>"; };
+		AAB2B3E8185288E100E4C2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AAB2B3EA185288E100E4C2CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AAB2B3EC185288E100E4C2CD /* DJDemocracyServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJDemocracyServer-Prefix.pch"; sourceTree = "<group>"; };
+		AAB2B3EE185288E100E4C2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		AAB2B3F0185288E100E4C2CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AAB2B3F1185288E100E4C2CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AAB2B3F4185288E200E4C2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		AAB2B40918528C8400E4C2CD /* EyeTunes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EyeTunes.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAB2B3D7185288E100E4C2CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAB2B3DF185288E100E4C2CD /* Cocoa.framework in Frameworks */,
+				AAB2B40A18528C8400E4C2CD /* EyeTunes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAB2B3CF185288E000E4C2CD = {
+			isa = PBXGroup;
+			children = (
+				AAB2B3E4185288E100E4C2CD /* DJDemocracyServer */,
+				AAB2B3DD185288E100E4C2CD /* Frameworks */,
+				AAB2B3DB185288E100E4C2CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAB2B3DB185288E100E4C2CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAB2B3DD185288E100E4C2CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAB2B40918528C8400E4C2CD /* EyeTunes.framework */,
+				AAB2B3DE185288E100E4C2CD /* Cocoa.framework */,
+				AAB2B3E0185288E100E4C2CD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAB2B3E0185288E100E4C2CD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAB2B3E1185288E100E4C2CD /* AppKit.framework */,
+				AAB2B3E2185288E100E4C2CD /* CoreData.framework */,
+				AAB2B3E3185288E100E4C2CD /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		AAB2B3E4185288E100E4C2CD /* DJDemocracyServer */ = {
+			isa = PBXGroup;
+			children = (
+				AAB2B3F0185288E100E4C2CD /* AppDelegate.h */,
+				AAB2B3F1185288E100E4C2CD /* AppDelegate.m */,
+				AAB2B3F3185288E200E4C2CD /* MainMenu.xib */,
+				AAB2B3E5185288E100E4C2CD /* Supporting Files */,
+			);
+			path = DJDemocracyServer;
+			sourceTree = "<group>";
+		};
+		AAB2B3E5185288E100E4C2CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AAB2B3E6185288E100E4C2CD /* DJDemocracyServer-Info.plist */,
+				AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */,
+				AAB2B3EA185288E100E4C2CD /* main.m */,
+				AAB2B3EC185288E100E4C2CD /* DJDemocracyServer-Prefix.pch */,
+				AAB2B3ED185288E100E4C2CD /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAB2B3D9185288E100E4C2CD /* DJDemocracyServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAB2B3F8185288E200E4C2CD /* Build configuration list for PBXNativeTarget "DJDemocracyServer" */;
+			buildPhases = (
+				AAB2B3D6185288E100E4C2CD /* Sources */,
+				AAB2B3D7185288E100E4C2CD /* Frameworks */,
+				AAB2B3D8185288E100E4C2CD /* Resources */,
+				AAB2B3FD1852891300E4C2CD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DJDemocracyServer;
+			productName = DJDemocracyServer;
+			productReference = AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAB2B3D1185288E100E4C2CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = AAB2B3D4185288E100E4C2CD /* Build configuration list for PBXProject "DJDemocracyServer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AAB2B3CF185288E000E4C2CD;
+			productRefGroup = AAB2B3DB185288E100E4C2CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAB2B3D9185288E100E4C2CD /* DJDemocracyServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAB2B3D8185288E100E4C2CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAB2B3E9185288E100E4C2CD /* InfoPlist.strings in Resources */,
+				AAB2B3EF185288E100E4C2CD /* Credits.rtf in Resources */,
+				AAB2B3F5185288E200E4C2CD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAB2B3D6185288E100E4C2CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAB2B3EB185288E100E4C2CD /* main.m in Sources */,
+				AAB2B3F2185288E100E4C2CD /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAB2B3E8185288E100E4C2CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AAB2B3ED185288E100E4C2CD /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAB2B3EE185288E100E4C2CD /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		AAB2B3F3185288E200E4C2CD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAB2B3F4185288E200E4C2CD /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AAB2B3F6185288E200E4C2CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AAB2B3F7185288E200E4C2CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AAB2B3F9185288E200E4C2CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DJDemocracyServer/DJDemocracyServer-Prefix.pch";
+				INFOPLIST_FILE = "DJDemocracyServer/DJDemocracyServer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AAB2B3FA185288E200E4C2CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DJDemocracyServer/DJDemocracyServer-Prefix.pch";
+				INFOPLIST_FILE = "DJDemocracyServer/DJDemocracyServer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAB2B3D4185288E100E4C2CD /* Build configuration list for PBXProject "DJDemocracyServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAB2B3F6185288E200E4C2CD /* Debug */,
+				AAB2B3F7185288E200E4C2CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAB2B3F8185288E200E4C2CD /* Build configuration list for PBXNativeTarget "DJDemocracyServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAB2B3F9185288E200E4C2CD /* Debug */,
+				AAB2B3FA185288E200E4C2CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAB2B3D1185288E100E4C2CD /* Project object */;
+}
