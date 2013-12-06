@@ -11,6 +11,7 @@
 
 @class ServerRunningViewController;
 @class ServerBrowserTableViewController;
+@class SongSelectionViewController;
 
 @interface NetworkingTestingAppDelegate : NSObject <UIApplicationDelegate, ServerDelegate> {
     Server *_server;
@@ -18,6 +19,7 @@
     UINavigationController *navigationController;
     IBOutlet ServerBrowserTableViewController *serverBrowserVC;
     IBOutlet ServerRunningViewController *serverRunningVC;
+    IBOutlet SongSelectionViewController *songSelectionVC;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

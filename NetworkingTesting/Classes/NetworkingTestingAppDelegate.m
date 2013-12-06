@@ -53,6 +53,7 @@
     NSLog(@"Server did accept data %@", data);
     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
+        NSLog(message);
         serverRunningVC.message = message;
     } else {
         serverRunningVC.message = @"no data received";

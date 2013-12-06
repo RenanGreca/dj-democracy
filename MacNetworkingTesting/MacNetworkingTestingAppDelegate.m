@@ -50,6 +50,7 @@
 	NSError *error = nil;
 	[self.server sendData:data error:&error];
 	
+    //[self.server s ]
 }
 
 #pragma mark -
@@ -126,7 +127,7 @@
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	if (rowIndex == connectedRow)
-		[aCell setTextColor:[NSColor redColor]];
+		[aCell setTextColor:[NSColor greenColor]];
 	else
 		[aCell setTextColor:[NSColor blackColor]];
 }
