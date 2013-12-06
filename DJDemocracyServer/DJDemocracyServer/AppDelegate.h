@@ -7,9 +7,23 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Server.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, ServerDelegate> {
+    IBOutlet NSTableView *tableView;
+    NSWindow *window;
+    Server *_server;
+    NSMutableArray *_playlists;
+    NSMutableArray *_services;
+}
 
 @property (assign) IBOutlet NSWindow *window;
+@property (nonatomic, retain) Server *server;
+@property (nonatomic, retain) NSMutableArray *playlists;
+@property (nonatomic, retain) NSMutableArray *services;
+
+- (IBAction)connectToService:(id)sender;
+- (IBAction)sendSongs:(id)sender;
+
 
 @end

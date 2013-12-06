@@ -15,6 +15,20 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    
+    self.message = @"Message";
+	connectedRow = -1;
+	self.services = [[NSMutableArray alloc] init];
+	
+	NSString *type = @"TestingProtocol";
+    
+	_server = [[Server alloc] initWithProtocol:type];
+    _server.delegate = self;
+    
+    NSError *error = nil;
+    if(![_server start:&error]) {
+        NSLog(@"error = %@", error);
+    }
 }
 
 @end

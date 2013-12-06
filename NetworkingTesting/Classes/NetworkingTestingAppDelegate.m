@@ -89,6 +89,7 @@
     serverBrowserVC = nil;
     [_server release];
     _server = nil;
+    [songSelectionVC release];
 	[super dealloc];
 }
 

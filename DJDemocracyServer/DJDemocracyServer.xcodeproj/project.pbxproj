@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FCE60341852928A00FF7553 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE60331852928A00FF7553 /* Server.m */; };
 		AAB2B3DF185288E100E4C2CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2B3DE185288E100E4C2CD /* Cocoa.framework */; };
 		AAB2B3E9185288E100E4C2CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */; };
 		AAB2B3EB185288E100E4C2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B3EA185288E100E4C2CD /* main.m */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1FCE60321852928A00FF7553 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		1FCE60331852928A00FF7553 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB2B3DE185288E100E4C2CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AAB2B3E1185288E100E4C2CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +103,8 @@
 		AAB2B3E4185288E100E4C2CD /* DJDemocracyServer */ = {
 			isa = PBXGroup;
 			children = (
+				1FCE60321852928A00FF7553 /* Server.h */,
+				1FCE60331852928A00FF7553 /* Server.m */,
 				AAB2B3F0185288E100E4C2CD /* AppDelegate.h */,
 				AAB2B3F1185288E100E4C2CD /* AppDelegate.m */,
 				AAB2B3F3185288E200E4C2CD /* MainMenu.xib */,
@@ -185,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB2B3EB185288E100E4C2CD /* main.m in Sources */,
+				1FCE60341852928A00FF7553 /* Server.m in Sources */,
 				AAB2B3F2185288E100E4C2CD /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
