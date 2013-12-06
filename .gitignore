@@ -1,5 +1,4 @@
 # Xcode
-._.DS_Store
 .DS_Store
 */build/*
 *.pbxuser
@@ -20,3 +19,6 @@ DerivedData
 
 #CocoaPods
 Pods
+
+#Ignore weird mac files
+._*
