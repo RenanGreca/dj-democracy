@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C856BCB1185A651C00E956A8 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = C856BCB0185A651C00E956A8 /* Server.m */; };
 		C8A0EAA4185290AB006C1EB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA3185290AB006C1EB2 /* UIKit.framework */; };
 		C8A0EAA6185290AB006C1EB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA5185290AB006C1EB2 /* Foundation.framework */; };
 		C8A0EAA8185290AB006C1EB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA7185290AB006C1EB2 /* CoreGraphics.framework */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C856BCAF185A651C00E956A8 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		C856BCB0185A651C00E956A8 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		C8A0EA9F185290AB006C1EB2 /* DJDemocracyClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A0EAA3185290AB006C1EB2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C8A0EAA5185290AB006C1EB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,9 +50,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C856BCAE185A650800E956A8 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				C856BCAF185A651C00E956A8 /* Server.h */,
+				C856BCB0185A651C00E956A8 /* Server.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
 		C8A0EA94185290AB006C1EB2 = {
 			isa = PBXGroup;
 			children = (
+				C856BCAE185A650800E956A8 /* Server */,
 				C8A0EAA9185290AB006C1EB2 /* DJDemocracyClient */,
 				C8A0EAA2185290AB006C1EB2 /* Frameworks */,
 				C8A0EAA0185290AB006C1EB2 /* Products */,
@@ -163,6 +176,7 @@
 				C8A0EAB0185290AC006C1EB2 /* main.m in Sources */,
 				C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */,
 				C8A0EABA185290AC006C1EB2 /* ViewController.m in Sources */,
+				C856BCB1185A651C00E956A8 /* Server.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +250,7 @@
 		C8A0EABE185290AC006C1EB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJDemocracyClient/DJDemocracyClient-Prefix.pch";
 				INFOPLIST_FILE = "DJDemocracyClient/DJDemocracyClient-Info.plist";
@@ -247,6 +262,7 @@
 		C8A0EABF185290AC006C1EB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DJDemocracyClient/DJDemocracyClient-Prefix.pch";
 				INFOPLIST_FILE = "DJDemocracyClient/DJDemocracyClient-Info.plist";
