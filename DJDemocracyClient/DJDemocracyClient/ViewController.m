@@ -16,6 +16,16 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Service updates
+
+- (void)addService:(NSNetService *)service moreComing:(BOOL)more {
+    [self.services addObject:service];
+}
+
+- (void)removeService:(NSNetService *)service moreComing:(BOOL)more {
+    [self.services removeObject:service];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad

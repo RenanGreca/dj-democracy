@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Server.h"
 
 @interface ViewController : UIViewController
+
+@property (nonatomic, strong) Server *server;
+@property (nonatomic, strong) NSMutableArray *services;
+
+- (void)addServer:(NSNetService *)service moreComing:(BOOL)moreComing;
+- (void)removeServer:(NSNetService *)service moreComing:(BOOL)moreComing;
 
 @end
