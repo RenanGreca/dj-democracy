@@ -692,7 +692,7 @@
                             <rect key="frame" x="1" y="303" width="438" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="tSe-FR-FEx">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tSe-FR-FEx">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -737,7 +737,7 @@
                             <rect key="frame" x="1" y="118" width="203" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="xKg-eo-Lgt">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xKg-eo-Lgt">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -751,6 +751,8 @@
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
+                <outlet property="deviceTable" destination="mr0-bG-NuP" id="pKw-Cp-LOe"/>
+                <outlet property="playlistTable" destination="TaH-qf-6ne" id="AVC-SV-irq"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>
