@@ -20,7 +20,7 @@
 	connectedRow = -1;
 	self.services = [[NSMutableArray alloc] init];
 	
-	NSString *type = @"TestingProtocol";
+	/*NSString *type = @"TestingProtocol";
     
 	_server = [[Server alloc] initWithProtocol:type];
     _server.delegate = self;
@@ -28,7 +28,7 @@
     NSError *error = nil;
     if(![_server start:&error]) {
         NSLog(@"error = %@", error);
-    }
+    }*/
     
     [self showPlaylists];
     
@@ -37,27 +37,54 @@
 
 - (void)showPlaylists; {
     EyeTunes *eyetunes = [EyeTunes sharedInstance];
-    NSArray *playlists = [eyetunes playlists];
-    if (!playlists)
+    
+    self.playlists = [[NSMutableArray alloc] init];
+    self.playlists = [eyetunes playlists]
+    ;
+    if (!self.playlists)
         return;
     
-    NSLog(@"List of playlists:");
-    for (id playlist in playlists) {
-        [self.playlists addObject:playlist];
+    //NSLog(self.playlists);
+    
+    /*NSLog(@"List of playlists:");
+    for (id playlist in self.playlists) {
+        //[self.playlists addObject:playlist];
         NSLog(@"Playlist: %@",[playlist name]);
-    }
+    }*/
+    
+    //playlistTable = [[NSTableView alloc] init];
+    
+    selectedPlaylist = -1;
     
     [playlistTable reloadData];
+    
+    showingSongs = FALSE;
     
     /*NSLog(@"Track: %@",[currentTrack name]);
      NSLog(@"Artist: %@",[currentTrack albumArtist]);*/
 
 }
 
+- (void)showSongs; {
+    //EyeTunes *eyetunes = [EyeTunes sharedInstance];
+    
+    self.playlists = [[self.playlists objectAtIndex:selectedPlaylist] tracks];
+    
+    [playlistTable reloadData];
+    
+    showingSongs = TRUE;
+    
+    /*for (ETTrack *track in playlist.tracks) {
+        
+    }*/
+    
+}
+
 
 - (IBAction)connectToService:(id)sender;
 {
-	[self.server connectToRemoteService:[self.services objectAtIndex:selectedRow]];
+    NSLog(@"%d", (int) self.playlists.count);
+	//[self.server connectToRemoteService:[self.services objectAtIndex:selectedRow]];
 }
 
 - (IBAction)sendText:(id)sender;
@@ -69,9 +96,40 @@
     //[self.server s ]
 }
 
-- (IBAction)sendSongs:(id)sender; {
+- (IBAction)sendSongs:(NSInteger)service; {
+    EyeTunes *eyetunes = [EyeTunes sharedInstance];
+    
+    ETPlaylist *library = [eyetunes libraryPlaylist];
+    NSError *error = nil;
+
+    for (ETTrack *track in [library tracks]) {
+        NSData *data = [[track name] dataUsingEncoding:NSUTF8StringEncoding];
+        [self.server sendData:data error:&error];
+    }
     
 }
+
+- (IBAction)startServer:(id)sender; {
+    if (selectedPlaylist == -1) {
+        NSLog(@"Please select a playlist");
+        return;
+    }
+    
+    NSString *type = @"TestingProtocol";
+    
+    _server = [[Server alloc] initWithProtocol:type];
+    _server.delegate = self;
+    
+    NSError *error = nil;
+    if(![_server start:&error]) {
+        NSLog(@"error = %@", error);
+    }
+    
+    NSLog(@"Server started!");
+    
+}
+
+
 
 #pragma mark -
 #pragma mark Server delegate methods
@@ -84,6 +142,8 @@
     
 	connectedRow = selectedRow;
 	[deviceTable reloadData];
+    
+    [self sendSongs:connectedRow];
 }
 
 - (void)serverStopped:(Server *)server
@@ -104,12 +164,13 @@
 - (void)server:(Server *)server didAcceptData:(NSData *)data
 {
     NSLog(@"Server did accept data %@", data);
-    //NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    /*if(nil != message || [message length] > 0) {
+    NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    if(nil != message || [message length] > 0) {
         self.message = message;
+        //NSLog(message);
     } else {
         self.message = @"no data received";
-    }*/
+    }
 }
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict
@@ -140,5 +201,93 @@
         [deviceTable reloadData];
     }
 }
+
+#pragma mark -
+#pragma mark NSTableView delegate methods
+
+/*- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	if (rowIndex == connectedRow)
+		[aCell setTextColor:[NSColor redColor]];
+	else
+		[aCell setTextColor:[NSColor blackColor]];
+}*/
+
+/*- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+	return [[self.playlists objectAtIndex:rowIndex] name];
+}*/
+
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+    if (aTableView == playlistTable) {
+        //NSLog(@"Count: %lu", (unsigned long)[self.playlists count]);
+        return (int) [self.playlists count];
+    }
+    return (int) [self.services count];
+    
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification;
+{
+    //NSLog([[aNotification object] identifier]);
+    if ([[[aNotification object] identifier] isEqualToString:@"PlaylistsTable"] && !showingSongs) {
+        //NSLog(@"Here2");
+        selectedPlaylist = [[aNotification object] selectedRow];
+        [self showSongs];
+    }
+	selectedRow = [[aNotification object] selectedRow];
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex {
+    return YES;
+}
+
+/*- (NSString *)tableView:(NSTableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSLog(@"title");
+    return [[self.playlists sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
+}*/
+
+- (NSTableCellView*)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    
+    //NSLog(@"Here");
+    //NSLog(@"%ld", (long)row);
+    //NSLog([self.playlists firstObject]);
+    //[self.playlists firstObject];
+    NSTableCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    
+    //[cellView setTitle:[array objectAtIndex:row]];
+   
+    //NSTextField *field;
+    
+    //[field setStringValue:[self.playlists objectAtIndex:row]];
+    
+    //[cellView setTextField:field];
+
+    //return Nil;
+    
+    //NSLog(tableColumn.identifier);
+    
+    if( [tableColumn.identifier isEqualToString:@"Playlists"] )
+    {
+        cellView.textField.stringValue = [[self.playlists objectAtIndex:row] name ];
+        return cellView;
+    }
+    
+    if ( [tableColumn.identifier isEqualToString:@"Devices"] ) {
+        cellView.textField.stringValue = [[self.services objectAtIndex:row] name];
+        return cellView;
+    }
+    
+    //cellView.textField.stringValue = [[self.playlists objectAtIndex:row] name ];
+    return cellView;
+}
+
+
+@synthesize server = _server;
+@synthesize services = _services;
+@synthesize message = _message;
+@synthesize isConnectedToService;
 
 @end

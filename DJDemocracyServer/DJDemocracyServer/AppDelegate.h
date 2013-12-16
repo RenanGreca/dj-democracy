@@ -19,13 +19,14 @@
     NSMutableArray *_playlists;
     NSMutableArray *_services;
     NSString *textToSend, *_message;
-	NSInteger selectedRow, connectedRow;
+	NSInteger selectedPlaylist, selectedRow, connectedRow;
 	BOOL isConnectedToService;
+    BOOL showingSongs;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (nonatomic, retain) Server *server;
-@property (nonatomic, retain) NSMutableArray *playlists;
+@property (nonatomic, retain) NSArray *playlists;
 @property (nonatomic, retain) NSMutableArray *services;
 @property(readwrite, copy) NSString *message;
 @property(readwrite, nonatomic) BOOL isConnectedToService;
@@ -33,7 +34,8 @@
 
 
 - (IBAction)connectToService:(id)sender;
-- (IBAction)sendSongs:(id)sender;
+- (IBAction)sendSongs:(NSInteger)service;
+- (IBAction)startServer:(id)sender;
 
 
 @end
