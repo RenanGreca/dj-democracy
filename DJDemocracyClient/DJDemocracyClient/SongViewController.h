@@ -11,12 +11,12 @@
 @class Server;
 
 @interface SongViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
-    NSMutableArray *songs;
+    NSMutableArray *_songs;
 }
 
 - (void) addSong:(NSString*) message;
 
-@property (strong, nonatomic) NSMutableArray *songs;
+//@property (strong, nonatomic) NSMutableArray *songs;
 
 
 

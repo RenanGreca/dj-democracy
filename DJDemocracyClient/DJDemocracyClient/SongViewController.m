@@ -9,10 +9,12 @@
 #import "SongViewController.h"
 
 @interface SongViewController ()
-
+@property(nonatomic, retain) NSMutableArray *songs;
 @end
 
 @implementation SongViewController
+
+@synthesize songs = _songs;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +30,19 @@
 
 - (void) addSong:(NSString *)message {
     NSString *name = [[message componentsSeparatedByString:@";" ] objectAtIndex:0];
-    
-    [songs addObject:name];
+    NSLog(@"Adding song %@", name);
+    [self.songs addObject:name];
+    NSLog(@"Count of songs: %d", self.songs.count);
     [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.title = @"Service Browser";
+    self.songs = [[NSMutableArray alloc] init];
+    [self.tableView reloadData];
+    
 }
 
 - (void)viewDidLoad
@@ -56,11 +68,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Count of songs: %d", self.songs.count);
     return self.songs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
+    
+    NSLog(@"Something something");
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
