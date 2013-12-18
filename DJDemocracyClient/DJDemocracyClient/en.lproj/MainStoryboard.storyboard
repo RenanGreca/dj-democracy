@@ -44,8 +44,7 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="p6A-Ec-VRq" id="H1B-OJ-1Oc"/>
-                            <outlet property="delegate" destination="p6A-Ec-VRq" id="aHz-6g-kWr"/>
+                            <outlet property="dataSource" destination="p6A-Ec-VRq" id="1I3-0g-s8l"/>
                         </connections>
                     </tableView>
                 </tableViewController>
@@ -54,6 +53,11 @@
             <point key="canvasLocation" x="649" y="178"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
