@@ -26,9 +26,6 @@
     return self;
 }
 
-- (IBAction)sendSong {
-}
-
 - (void) addSong:(NSString *)message {
     NSArray *track = [message componentsSeparatedByString:@";" ];
     NSLog(@"Adding song %@", [track objectAtIndex:0]);
