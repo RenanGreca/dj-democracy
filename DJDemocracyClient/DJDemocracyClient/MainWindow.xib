@@ -108,7 +108,8 @@
 					</object>
 				</array>
 			</object>
-			<object class="IBUIViewController" id="315128688">
+			<object class="IBUIViewController" id="420969351">
+				<string key="IBUINibName">SongView</string>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 					<int key="IBUIInterfaceOrientation">1</int>
@@ -157,7 +158,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">songViewController</string>
 						<reference key="source" ref="750696052"/>
-						<reference key="destination" ref="315128688"/>
+						<reference key="destination" ref="420969351"/>
 					</object>
 					<int key="connectionID">17</int>
 				</object>
@@ -220,7 +221,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
-						<reference key="object" ref="315128688"/>
+						<reference key="object" ref="420969351"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>
