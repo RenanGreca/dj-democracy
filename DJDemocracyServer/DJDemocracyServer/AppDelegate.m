@@ -39,7 +39,7 @@
     EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
     self.playlists = [[NSMutableArray alloc] init];
-    self.playlists = [eyetunes playlists]
+    self.playlists = [eyetunes userPlaylists]
     ;
     if (!self.playlists)
         return;
@@ -68,6 +68,21 @@
 - (void)showSongs; {
     //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
+    //ETPlaylist *playlist = [self.playlists objectAtIndex:selectedPlaylist];
+
+    //ETPlaylist *library = [eyetunes playlists];
+    
+    //ETTrack *track = [playlist.tracks firstObject];
+    
+    //NSLog([track getPropertyAsPathForDesc:pETTrackLocation]);
+    
+    //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pETTrackLocation]];
+    //NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    //[eyetunes addTrack:url toPlaylist:playlist];
+    
+    //[eyetunes playTrack:track];
+    
     self.playlists = [[self.playlists objectAtIndex:selectedPlaylist] tracks];
     
     [playlistTable reloadData];
@@ -79,6 +94,17 @@
     }*/
     
 }
+
+/*- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self->inoutTrack = [decoder decodeObjectForKey:@"track"];
+    }
+    return self->inoutTrack;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self->inoutTrack forKey:@"track"];
+}*/
 
 
 - (IBAction)connectToService:(id)sender;
@@ -103,11 +129,45 @@
     NSError *error = nil;
 
     for (ETTrack *track in [library tracks]) {
-        NSData *data = [[track name] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        
+        //[encoder encodeObject:self->inoutTrack forKey:@"track"];
+        //[NSKeyedArchiver archivedDataWithRootObject:track];
+        
+        //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        
         [self.server sendData:data error:&error];
     }
     
 }
+
+// Decodes a string into an ETTrack object we can use
+- (ETTrack *)decodeTrack:(NSString *)str; {
+    ETTrack *track = nil;
+    
+    NSArray *array = [str componentsSeparatedByString:@";"];
+    
+    track.name = [array objectAtIndex:0];
+    track.artist = [array objectAtIndex:1];
+    //track.location =
+    
+    return track;
+    
+}
+
+// Encodes track title, artist and location into a string so we can send it to the client
+- (NSString *)encodeTrack:(ETTrack *)track; {
+    NSString *str = @"";
+    
+    str = [[str stringByAppendingString:track.name] stringByAppendingString:@";"];
+    str = [[str stringByAppendingString:track.artist] stringByAppendingString:@";"];
+    str = [[str stringByAppendingString:[track getPropertyAsPathForDesc:pETTrackLocation]] stringByAppendingString:@";"];
+    
+    return str;
+}
+
 
 - (IBAction)startServer:(id)sender; {
     if (selectedPlaylist == -1) {

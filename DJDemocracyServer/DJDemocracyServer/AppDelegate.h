@@ -10,10 +10,10 @@
 #import "Server.h"
 #import <EyeTunes/EyeTunes.h>
 
-
 @interface AppDelegate : NSObject <NSApplicationDelegate, ServerDelegate> {
     IBOutlet NSTableView *playlistTable;
     IBOutlet NSTableView *deviceTable;
+    ETTrack *inoutTrack;
     NSWindow *window;
     Server *_server;
     NSMutableArray *_playlists;
