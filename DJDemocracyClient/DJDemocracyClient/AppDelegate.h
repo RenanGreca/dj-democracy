@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Server.h"
-#import "ViewController.h"
+#import "ServerViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
