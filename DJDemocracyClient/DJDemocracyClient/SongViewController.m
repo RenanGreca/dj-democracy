@@ -15,6 +15,7 @@
 @implementation SongViewController
 
 @synthesize songs = _songs;
+@synthesize server = _server;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,10 +30,11 @@
 }
 
 - (void) addSong:(NSString *)message {
-    NSString *name = [[message componentsSeparatedByString:@";" ] objectAtIndex:0];
-    NSLog(@"Adding song %@", name);
-    [self.songs addObject:name];
-    NSLog(@"Count of songs: %d", self.songs.count);
+    NSArray *track = [message componentsSeparatedByString:@";" ];
+    NSLog(@"Adding song %@", [track objectAtIndex:0]);
+    
+    [self.songs addObject:track];
+    //NSLog(@"Count of songs: %d", self.songs.count);
     [self.tableView reloadData];
 }
 
@@ -68,28 +70,52 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Count of songs: %d", self.songs.count);
+    //NSLog(@"Count of songs: %d", self.songs.count);
     return self.songs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-    NSLog(@"Something something");
+    //NSLog(@"Something something");
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.text = [self.songs objectAtIndex:indexPath.row];
+    cell.text = [[self.songs objectAtIndex:indexPath.row] objectAtIndex:0];
     
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Send the song here
+    //Send the song here
     //[self.server connectToRemoteService:[self.services objectAtIndex: indexPath.row]];
+    NSError *error = nil;
+    
+    NSArray *track = [self.songs objectAtIndex:indexPath.row];
+    
+    NSString *str = @"";
+    
+    str = [str stringByAppendingString:[track objectAtIndex:0]];
+    str = [str stringByAppendingString:@";"];
+    str = [str stringByAppendingString:[track objectAtIndex:1]];
+    str = [str stringByAppendingString:@";"];
+    str = [str stringByAppendingString:[track objectAtIndex:2]];
+    str = [str stringByAppendingString:@";"];
+   
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    //[encoder encodeObject:self->inoutTrack forKey:@"track"];
+    //[NSKeyedArchiver archivedDataWithRootObject:track];
+    
+    //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Sending song");
+    
+    [self.server sendData:data error:&error];
 }
 
 @end

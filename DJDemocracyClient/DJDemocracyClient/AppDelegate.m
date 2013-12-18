@@ -22,6 +22,7 @@
     _server = [[Server alloc] initWithProtocol:type];
     _server.delegate = self;
     serverViewController.server = _server;
+    songViewController.server = _server;
     
     NSError *error = nil;
     if(![_server start:&error]) {
@@ -35,7 +36,6 @@
     
     return YES;
 }
-
 
 
 #pragma mark Server Delegate Methods
@@ -58,10 +58,10 @@
 }
 
 - (void)server:(Server *)server didAcceptData:(NSData *)data {
-    NSLog(@"Server did accept data %@", data);
+    NSLog(@"Server did accept data"); // %@", data);
     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
-        NSLog(@"%@", message);
+        //NSLog(@"%@", message);
         [songViewController addSong:message];
     } else {
         NSLog(@"%@", @"no data received");

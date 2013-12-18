@@ -66,22 +66,7 @@
 }
 
 - (void)showSongs; {
-    //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
-    //ETPlaylist *playlist = [self.playlists objectAtIndex:selectedPlaylist];
-
-    //ETPlaylist *library = [eyetunes playlists];
-    
-    //ETTrack *track = [playlist.tracks firstObject];
-    
-    //NSLog([track getPropertyAsPathForDesc:pETTrackLocation]);
-    
-    //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pETTrackLocation]];
-    //NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    
-    //[eyetunes addTrack:url toPlaylist:playlist];
-    
-    //[eyetunes playTrack:track];
     
     self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
     
@@ -95,6 +80,53 @@
         
     }*/
     
+}
+
+- (void)showSongs:(ETPlaylist *)playlist; {
+    
+    
+    //self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
+    
+    self.playlists = [playlist tracks];
+    
+    [playlistTable reloadData];
+    
+    showingSongs = TRUE;
+    
+    /*for (ETTrack *track in playlist.tracks) {
+     
+     }*/
+    
+}
+
+- (void)addSongToPlaylist:(NSString *)message {
+    EyeTunes *eyetunes = [EyeTunes sharedInstance];
+    
+    //ETPlaylist *playlist = [self.playlists objectAtIndex:selectedPlaylist];
+    
+    //ETPlaylist *library = [eyetunes playlists];
+    
+    //ETTrack *track = [playlist.tracks firstObject];
+    
+    //NSLog([track getPropertyAsPathForDesc:pETTrackLocation]);
+    
+    //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pETTrackLocation]];
+    
+    NSLog(message);
+    
+    NSArray *track = [message componentsSeparatedByString:@";"];
+    
+    NSLog([track objectAtIndex:2]);
+    
+    NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    [eyetunes addTrack:url toPlaylist:self.playlist];
+    
+    [self showSongs:self.playlist];
+
+    [self sendSong:message];
+    
+    //[eyetunes playTrack:track];
 }
 
 /*- (id)initWithCoder:(NSCoder *)decoder {
@@ -124,6 +156,13 @@
     //[self.server s ]
 }
 
+- (void)sendSong:(NSString *)encodedSong;
+{
+	NSData *data = [encodedSong dataUsingEncoding:NSUTF8StringEncoding];
+	NSError *error = nil;
+	[self.server sendData:data error:&error];
+}
+
 - (IBAction)sendSongs:(id)sender; {
     //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
@@ -138,8 +177,9 @@
         //[NSKeyedArchiver archivedDataWithRootObject:track];
         
         //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
+        [NSThread sleepForTimeInterval:0.01f];
         
-        NSLog(@"Sending song");
+        NSLog(@"Sending song %@", track.name);
         
         [self.server sendData:data error:&error];
     }
@@ -177,6 +217,9 @@
     if (location.length > 0) {
         str = [str stringByAppendingString:location];
     }
+    str = [str stringByAppendingString:@";"];
+    
+    //NSLog(@"encoding track: %@", str);
     
     return str;
 }
@@ -238,10 +281,11 @@
 
 - (void)server:(Server *)server didAcceptData:(NSData *)data
 {
-    NSLog(@"Server did accept data %@", data);
+    NSLog(@"Server did accept data"); // %@", data);
     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
         self.message = message;
+        [self addSongToPlaylist:message];
         //NSLog(message);
     } else {
         self.message = @"no data received";

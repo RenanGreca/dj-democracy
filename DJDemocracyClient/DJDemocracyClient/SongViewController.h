@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Server.h"
 
-@class Server;
+//@class Server;
 
 @interface SongViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+    Server *_server;
     NSMutableArray *_songs;
 }
+
+@property (nonatomic, retain) Server *server;
 
 - (void) addSong:(NSString*) message;
 
