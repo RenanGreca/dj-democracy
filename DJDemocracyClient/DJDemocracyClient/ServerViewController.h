@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Server.h"
 
+@protocol UITableViewSource @end
+
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) Server *server;
