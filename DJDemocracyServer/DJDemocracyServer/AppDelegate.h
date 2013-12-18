@@ -13,7 +13,8 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate, ServerDelegate> {
     IBOutlet NSTableView *playlistTable;
     IBOutlet NSTableView *deviceTable;
-    ETTrack *inoutTrack;
+    //ETTrack *inoutTrack;
+    ETPlaylist *_playlist;
     NSWindow *window;
     Server *_server;
     NSMutableArray *_playlists;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSArray *playlists;
 @property (nonatomic, retain) NSMutableArray *services;
 @property(readwrite, copy) NSString *message;
+@property(readwrite, retain) ETPlaylist *playlist;
 @property(readwrite, nonatomic) BOOL isConnectedToService;
 
 

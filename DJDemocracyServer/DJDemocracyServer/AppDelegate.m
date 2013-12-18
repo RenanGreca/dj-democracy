@@ -83,7 +83,9 @@
     
     //[eyetunes playTrack:track];
     
-    self.playlists = [[self.playlists objectAtIndex:selectedPlaylist] tracks];
+    self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
+    
+    self.playlists = [self.playlist tracks];
     
     [playlistTable reloadData];
     
@@ -123,12 +125,12 @@
 }
 
 - (IBAction)sendSongs:(NSInteger)service; {
-    EyeTunes *eyetunes = [EyeTunes sharedInstance];
+    //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
-    ETPlaylist *library = [eyetunes libraryPlaylist];
+    //ETPlaylist *library = [eyetunes libraryPlaylist];
     NSError *error = nil;
 
-    for (ETTrack *track in [library tracks]) {
+    for (ETTrack *track in [self.playlist tracks]) {
         NSData *data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
         
         
@@ -161,9 +163,19 @@
 - (NSString *)encodeTrack:(ETTrack *)track; {
     NSString *str = @"";
     
-    str = [[str stringByAppendingString:track.name] stringByAppendingString:@";"];
-    str = [[str stringByAppendingString:track.artist] stringByAppendingString:@";"];
-    str = [[str stringByAppendingString:[track getPropertyAsPathForDesc:pETTrackLocation]] stringByAppendingString:@";"];
+    if (track.name.length > 0) {
+        str = [str stringByAppendingString:track.name];
+    }
+    str = [str stringByAppendingString:@";"];
+    if (track.artist.length > 0) {
+        str = [str stringByAppendingString:track.artist];
+    }
+    str = [str stringByAppendingString:@";"];
+    //NSLog(@"Here, maybe");
+    NSString *location = [track getPropertyAsPathForDesc:pETTrackLocation];
+    if (location.length > 0) {
+        str = [str stringByAppendingString:location];
+    }
     
     return str;
 }
@@ -199,6 +211,8 @@
     NSLog(@"Connected to service");
 	
 	self.isConnectedToService = YES;
+    
+    //NSLog(selectedRow);
     
 	connectedRow = selectedRow;
 	[deviceTable reloadData];
@@ -295,8 +309,9 @@
         //NSLog(@"Here2");
         selectedPlaylist = [[aNotification object] selectedRow];
         [self showSongs];
+    } else {
+        selectedRow = [[aNotification object] selectedRow];
     }
-	selectedRow = [[aNotification object] selectedRow];
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex {
@@ -348,6 +363,7 @@
 @synthesize server = _server;
 @synthesize services = _services;
 @synthesize message = _message;
+@synthesize playlist = _playlist;
 @synthesize isConnectedToService;
 
 @end
