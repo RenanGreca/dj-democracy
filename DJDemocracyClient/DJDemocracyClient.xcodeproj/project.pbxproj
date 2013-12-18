@@ -16,6 +16,8 @@
 		C8A0EAB0185290AC006C1EB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAAF185290AC006C1EB2 /* main.m */; };
 		C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */; };
 		C8A0EABA185290AC006C1EB2 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EAB9185290AC006C1EB2 /* ServerViewController.m */; };
+		C8A340A31861785100413DF5 /* SongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A340A21861785100413DF5 /* SongView.xib */; };
+		C8A340A61861790800413DF5 /* SongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A340A51861790800413DF5 /* SongViewController.m */; };
 		C8A69D581861661C00954BFD /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A69D571861661C00954BFD /* ServerView.xib */; };
 		C8A69D5A18616FDC00954BFD /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A69D5918616FDC00954BFD /* MainWindow.xib */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,9 @@
 		C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C8A0EAB8185290AC006C1EB2 /* ServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
 		C8A0EAB9185290AC006C1EB2 /* ServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
+		C8A340A21861785100413DF5 /* SongView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongView.xib; sourceTree = "<group>"; };
+		C8A340A41861790800413DF5 /* SongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongViewController.h; sourceTree = "<group>"; };
+		C8A340A51861790800413DF5 /* SongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongViewController.m; sourceTree = "<group>"; };
 		C8A69D571861661C00954BFD /* ServerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServerView.xib; path = ../ServerView.xib; sourceTree = "<group>"; };
 		C8A69D5918616FDC00954BFD /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				C8A69D571861661C00954BFD /* ServerView.xib */,
+				C8A340A21861785100413DF5 /* SongView.xib */,
+				C8A340A41861790800413DF5 /* SongViewController.h */,
+				C8A340A51861790800413DF5 /* SongViewController.m */,
 				C8A0EAB3185290AC006C1EB2 /* AppDelegate.m */,
 				C8A0EAB2185290AC006C1EB2 /* AppDelegate.h */,
 				C8A0EAB8185290AC006C1EB2 /* ServerViewController.h */,
@@ -171,6 +179,7 @@
 				C8594D961861472300E7644D /* Default-568h@2x.png in Resources */,
 				C8A69D581861661C00954BFD /* ServerView.xib in Resources */,
 				C8A69D5A18616FDC00954BFD /* MainWindow.xib in Resources */,
+				C8A340A31861785100413DF5 /* SongView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +194,7 @@
 				C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */,
 				C8A0EABA185290AC006C1EB2 /* ServerViewController.m in Sources */,
 				C856BCB1185A651C00E956A8 /* Server.m in Sources */,
+				C8A340A61861790800413DF5 /* SongViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

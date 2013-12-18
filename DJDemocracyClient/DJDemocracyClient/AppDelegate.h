@@ -10,6 +10,7 @@
 #import "Server.h"
 
 @class ServerViewController;
+@class SongViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, ServerDelegate> {
     Server *_server;
@@ -18,7 +19,7 @@
     UIWindow *window;
     UINavigationController *navigationController;
     IBOutlet ServerViewController *serverViewController;
-    //IBOutlet ServerRunningViewController *serverRunningVC;
+    IBOutlet SongViewController *songViewController;
     //IBOutlet SongSelectionViewController *songSelectionVC;
 }
 

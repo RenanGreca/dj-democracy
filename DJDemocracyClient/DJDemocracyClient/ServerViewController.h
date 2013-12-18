@@ -15,7 +15,6 @@
 }
 
 @property (nonatomic, retain) Server *server;
-//@property (nonatomic, retain) NSMutableArray *services;
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)moreComing;
 - (void)removeServer:(NSNetService *)service moreComing:(BOOL)moreComing;

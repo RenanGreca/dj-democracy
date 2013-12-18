@@ -44,12 +44,12 @@
     // this is called when the remote side finishes joining with the socket as
     // notification that the other side has made its connection with this side
     serverViewController.server = server;
-    //[self.navigationController pushViewController:serverRunningVC animated:YES];
+    [self.navigationController pushViewController:songViewController animated:YES];
 }
 
 - (void)serverStopped:(Server *)server {
     NSLog(@"Server stopped");
-    //[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)server:(Server *)server didNotStart:(NSDictionary *)errorDict {
@@ -58,13 +58,13 @@
 
 - (void)server:(Server *)server didAcceptData:(NSData *)data {
     NSLog(@"Server did accept data %@", data);
-//    NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-//    if(nil != message || [message length] > 0) {
-//        NSLog(message);
-//        serverRunningVC.message = message;
-//    } else {
-//        serverRunningVC.message = @"no data received";
-//    }
+    NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    if(nil != message || [message length] > 0) {
+        NSLog(@"%@", message);
+        [songViewController addSong:message];
+    } else {
+        NSLog(@"%@", @"no data received");
+    }
 }
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict {
