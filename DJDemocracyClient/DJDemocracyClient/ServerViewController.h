@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Server.h"
 
-@protocol UITableViewSource @end
+@interface ServerViewController : UITableViewController {
+    Server *_server;
+    NSMutableArray *_services;
+}
 
-@interface ViewController : UIViewController
-
-@property (nonatomic, strong) Server *server;
-@property (nonatomic, strong) NSMutableArray *services;
+@property (nonatomic, retain) Server *server;
+//@property (nonatomic, retain) NSMutableArray *services;
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)moreComing;
 - (void)removeServer:(NSNetService *)service moreComing:(BOOL)moreComing;
-
-
 
 @end

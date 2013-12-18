@@ -7,25 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import "ServerViewController.h"
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window;
+@synthesize navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     NSString *type = @"TestingProtocol";
-    self._server = [[Server alloc] initWithProtocol:type];
-    self._server.delegate = self;
-    self.serverViewController.server = self._server;
+    _server = [[Server alloc] initWithProtocol:type];
+    _server.delegate = self;
+    serverViewController.server = _server;
     
     NSError *error = nil;
-    if(![self._server start:&error]) {
+    if(![_server start:&error]) {
         NSLog(@"error: = %@", error);
     }
+     
+    [window addSubview:[navigationController view]];
+    [window makeKeyAndVisible];
     
-    
+    NSLog(@"App Started");
     
     return YES;
 }
@@ -38,7 +43,7 @@
     NSLog(@"Server Started");
     // this is called when the remote side finishes joining with the socket as
     // notification that the other side has made its connection with this side
-    self.serverViewController.server = server;
+    serverViewController.server = server;
     //[self.navigationController pushViewController:serverRunningVC animated:YES];
 }
 
@@ -68,11 +73,11 @@
 }
 
 - (void)serviceAdded:(NSNetService *)service moreComing:(BOOL)more {
-    [self.serverViewController addService:service moreComing:more];
+    [serverViewController addServer:service moreComing:more];
 }
 
 - (void)serviceRemoved:(NSNetService *)service moreComing:(BOOL)more {
-    [self.serverViewController removeService:service moreComing:more];
+    [serverViewController removeServer:service moreComing:more];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

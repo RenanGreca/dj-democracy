@@ -8,45 +8,64 @@
 
 #import "ServerViewController.h"
 
-@implementation ViewController
+@interface ServerViewController()
+@property(nonatomic, retain) NSMutableArray *services;
+@end
+
+@implementation ServerViewController
+
+@synthesize services = _services;
+@synthesize server = _server;
+
+#pragma mark - Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Current DJs";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.services.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    cell.text = [[self.services objectAtIndex:indexPath.row] name];
+    
+    return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.server connectToRemoteService:[self.services objectAtIndex: indexPath.row]];
+}
+
+
+#pragma mark - Service updates
+
+- (void)addService:(NSNetService *)service moreComing:(BOOL)more {
+    [self.services addObject:service];
+}
+
+- (void)removeService:(NSNetService *)service moreComing:(BOOL)more {
+    [self.services removeObject:service];
+}
+
+#pragma mark - View lifecycle
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.services.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    
-    if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"] autorelease];
-    }
-    
-    cell.textLabel.text = [self.services objectAtIndex:[indexPath row]];
-    NSLog(@"Cell is %@", [self.services objectAtIndex:indexPath.row]);
-    return cell;
-}
-
-
-#pragma mark - Service updates
-
-- (void)addServer:(NSNetService *)service moreComing:(BOOL)more {
-    [self.services addObject:service];
-}
-
-- (void)removeServer:(NSNetService *)service moreComing:(BOOL)more {
-    [self.services removeObject:service];
-}
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -63,17 +82,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    [super viewWillAppear:YES];
+    self.title = @"Service Browser";
+    self.services = nil;
+    [self.tableView reloadData];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+    self.services = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -85,6 +104,35 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)addServer:(NSNetService *)service moreComing:(BOOL)more;
+{
+    [self.services addObject:service];
+    if(!more) {
+        [self.tableView reloadData];
+    }
+}
+- (void)removeServer:(NSNetService *)service moreComing:(BOOL)more; {
+    [self.services removeObject:service];
+    if(!more) {
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - Server accessors
+
+- (NSMutableArray *) services {
+    if (nil == _services) {
+        self.services = [NSMutableArray array];
+    }
+    return _services;
+}
+
+- (void)dealloc {
+    self.services = nil;
+    self.server = nil;
+    [super dealloc];
 }
 
 @end

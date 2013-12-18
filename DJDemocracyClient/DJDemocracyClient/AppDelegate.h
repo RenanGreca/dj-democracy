@@ -8,14 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "Server.h"
-#import "ServerViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class ServerViewController;
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) Server *_server;
-@property (strong, nonatomic) NSArray *servers;
-@property (strong, nonatomic) NSArray *playlist;
-@property (strong, nonatomic) ViewController *serverViewController;
+@interface AppDelegate : NSObject <UIApplicationDelegate, ServerDelegate> {
+    Server *_server;
+    NSArray *servers;
+    NSArray *playlist;
+    UIWindow *window;
+    UINavigationController *navigationController;
+    IBOutlet ServerViewController *serverViewController;
+    //IBOutlet ServerRunningViewController *serverRunningVC;
+    //IBOutlet SongSelectionViewController *songSelectionVC;
+}
+
+
+@property (strong, nonatomic) IBOutlet UIWindow *window;
+@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
+
 
 @end
