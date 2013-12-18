@@ -10,7 +10,7 @@
 
 @class Server;
 
-@interface SongViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface SongViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *songs;
 }
 

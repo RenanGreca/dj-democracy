@@ -30,6 +30,7 @@
     NSString *name = [[message componentsSeparatedByString:@";" ] objectAtIndex:0];
     
     [songs addObject:name];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
