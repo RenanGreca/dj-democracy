@@ -67,7 +67,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.text = [[self.songs objectAtIndex:indexPath.row] name];
+    cell.text = [self.songs objectAtIndex:indexPath.row];
     
     return cell;
 }
