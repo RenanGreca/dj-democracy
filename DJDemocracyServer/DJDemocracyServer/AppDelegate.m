@@ -124,7 +124,7 @@
     //[self.server s ]
 }
 
-- (IBAction)sendSongs:(NSInteger)service; {
+- (IBAction)sendSongs:(id)sender; {
     //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
     //ETPlaylist *library = [eyetunes libraryPlaylist];
@@ -139,6 +139,7 @@
         
         //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
         
+        NSLog(@"Sending song");
         
         [self.server sendData:data error:&error];
     }
@@ -217,7 +218,7 @@
 	connectedRow = selectedRow;
 	[deviceTable reloadData];
     
-    [self sendSongs:connectedRow];
+    //[self sendSongs:connectedRow];
 }
 
 - (void)serverStopped:(Server *)server

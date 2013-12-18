@@ -756,11 +756,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="yW4-wP-Xfc">
-                                                    <rect key="frame" x="1" y="1" width="196" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="196.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="czL-Pz-PHs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="196" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="196.5" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="1Uk-x1-z9k">
                                                                 <font key="font" metaFont="system"/>
@@ -798,13 +798,24 @@
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" id="bQS-cv-1AS">
-                        <rect key="frame" x="191" y="14" width="99" height="32"/>
+                        <rect key="frame" x="73" y="13" width="99" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Start Server" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jP0-dU-GP5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <connections>
                                 <action selector="startServer:" target="494" id="7n0-xf-Df3"/>
+                            </connections>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" id="bz6-sf-nQG">
+                        <rect key="frame" x="301" y="13" width="112" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Send Songs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lTb-o6-Una">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="sendSongs:" target="494" id="R0m-i6-F0R"/>
                             </connections>
                         </buttonCell>
                     </button>

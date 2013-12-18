@@ -36,7 +36,7 @@
 
 
 - (IBAction)connectToService:(id)sender;
-- (IBAction)sendSongs:(NSInteger)service;
+- (IBAction)sendSongs:(id)sender;
 - (IBAction)startServer:(id)sender;
 
 
