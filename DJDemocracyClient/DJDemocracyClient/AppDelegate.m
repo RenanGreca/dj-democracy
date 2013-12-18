@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ServerViewController.h"
+#import "SongViewController.h"
 
 @implementation AppDelegate
 
@@ -69,7 +70,7 @@
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict {
     NSLog(@"Server lost connection %@", errorDict);
-    //[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)serviceAdded:(NSNetService *)service moreComing:(BOOL)more {
