@@ -101,6 +101,10 @@
     str = [str stringByAppendingString:@";"];
     str = [str stringByAppendingString:[track objectAtIndex:2]];
     str = [str stringByAppendingString:@";"];
+#warning find out what to do here
+    str = [str stringByAppendingString:[voteCount objectAtIndex:idunno]];
+    str = [str stringByAppendingString:@";"];
+
    
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     

@@ -19,6 +19,7 @@
     Server *_server;
     NSMutableArray *_playlists;
     NSMutableArray *_services;
+    NSMutableArray *voteCount;
     NSString *textToSend, *_message;
 	NSInteger selectedPlaylist, selectedRow, connectedRow;
 	BOOL isConnectedToService;

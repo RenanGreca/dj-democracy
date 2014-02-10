@@ -35,12 +35,12 @@
     
 }
 
+// Uses EyeTunes to get iTunes' playlists
 - (void)showPlaylists; {
     EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
     self.playlists = [[NSMutableArray alloc] init];
-    self.playlists = [eyetunes userPlaylists]
-    ;
+    self.playlists = [eyetunes userPlaylists];
     if (!self.playlists)
         return;
     
@@ -65,6 +65,7 @@
 
 }
 
+// Not quite sure which of these two methods are being used. They're similar, but might have different uses
 - (void)showSongs; {
     
     
@@ -82,6 +83,7 @@
     
 }
 
+// I think this is used to reload the current playlist
 - (void)showSongs:(ETPlaylist *)playlist; {
     
     
@@ -112,11 +114,14 @@
     
     //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pETTrackLocation]];
     
+    
     NSLog(message);
     
     NSArray *track = [message componentsSeparatedByString:@";"];
     
-    NSLog([track objectAtIndex:2]);
+    [voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
+    
+    /*-----NSLog([track objectAtIndex:2]);
     
     NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -124,7 +129,7 @@
     
     [self showSongs:self.playlist];
 
-    [self sendSong:message];
+    [self sendSong:message];------*/
     
     //[eyetunes playTrack:track];
 }
@@ -168,9 +173,10 @@
     
     //ETPlaylist *library = [eyetunes libraryPlaylist];
     NSError *error = nil;
-
+    
+    NSUInteger i = 0;
     for (ETTrack *track in [self.playlist tracks]) {
-        NSData *data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *data = [[self encodeTrack:track number:i] dataUsingEncoding:NSUTF8StringEncoding];
         
         
         //[encoder encodeObject:self->inoutTrack forKey:@"track"];
@@ -195,13 +201,14 @@
     track.name = [array objectAtIndex:0];
     track.artist = [array objectAtIndex:1];
     //track.location =
+    //track.index = [array objectAtIndex:3];
     
     return track;
     
 }
 
 // Encodes track title, artist and location into a string so we can send it to the client
-- (NSString *)encodeTrack:(ETTrack *)track; {
+- (NSString *)encodeTrack:(ETTrack *)track number:(NSUInteger)i; {
     NSString *str = @"";
     
     if (track.name.length > 0) {
@@ -216,6 +223,11 @@
     NSString *location = [track getPropertyAsPathForDesc:pETTrackLocation];
     if (location.length > 0) {
         str = [str stringByAppendingString:location];
+    }
+    str = [str stringByAppendingString:@";"];
+    NSString *index = [NSString stringWithFormat:@"%lu", i];
+    if (location.length > 0) {
+        str = [str stringByAppendingString:index];
     }
     str = [str stringByAppendingString:@";"];
     
