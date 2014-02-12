@@ -77,7 +77,7 @@
     
     showingSongs = TRUE;
     
-    /*for (ETTrack *track in playlist.tracks) {
+    /*for (DJTrack *track in playlist.tracks) {
         
     }*/
     
@@ -95,7 +95,7 @@
     
     showingSongs = TRUE;
     
-    /*for (ETTrack *track in playlist.tracks) {
+    /*for (DJTrack *track in playlist.tracks) {
      
      }*/
     
@@ -108,20 +108,20 @@
     
     //ETPlaylist *library = [eyetunes playlists];
     
-    //ETTrack *track = [playlist.tracks firstObject];
+    //DJTrack *track = [playlist.tracks firstObject];
     
-    //NSLog([track getPropertyAsPathForDesc:pETTrackLocation]);
+    //NSLog([track getPropertyAsPathForDesc:pDJTrackLocation]);
     
-    //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pETTrackLocation]];
+    //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pDJTrackLocation]];
     
     
     NSLog(message);
     
     NSArray *track = [message componentsSeparatedByString:@";"];
     
-    [voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
+    //[voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
     
-    /*-----NSLog([track objectAtIndex:2]);
+    NSLog([track objectAtIndex:2]);
     
     NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -129,7 +129,7 @@
     
     [self showSongs:self.playlist];
 
-    [self sendSong:message];------*/
+    [self sendSong:message];
     
     //[eyetunes playTrack:track];
 }
@@ -175,7 +175,7 @@
     NSError *error = nil;
     
     NSUInteger i = 0;
-    for (ETTrack *track in [self.playlist tracks]) {
+    for (DJTrack *track in [self.playlist tracks]) {
         NSData *data = [[self encodeTrack:track number:i] dataUsingEncoding:NSUTF8StringEncoding];
         
         
@@ -192,9 +192,9 @@
     
 }
 
-// Decodes a string into an ETTrack object we can use
-- (ETTrack *)decodeTrack:(NSString *)str; {
-    ETTrack *track = nil;
+// Decodes a string into an DJTrack object we can use
+- (DJTrack *)decodeTrack:(NSString *)str; {
+    DJTrack *track = nil;
     
     NSArray *array = [str componentsSeparatedByString:@";"];
     
@@ -208,7 +208,7 @@
 }
 
 // Encodes track title, artist and location into a string so we can send it to the client
-- (NSString *)encodeTrack:(ETTrack *)track number:(NSUInteger)i; {
+- (NSString *)encodeTrack:(DJTrack *)track number:(NSUInteger)i; {
     NSString *str = @"";
     
     if (track.name.length > 0) {
@@ -220,7 +220,7 @@
     }
     str = [str stringByAppendingString:@";"];
     //NSLog(@"Here, maybe");
-    NSString *location = [track getPropertyAsPathForDesc:pETTrackLocation];
+    NSString *location = [track getPropertyAsPathForDesc:pDJTrackLocation];
     if (location.length > 0) {
         str = [str stringByAppendingString:location];
     }

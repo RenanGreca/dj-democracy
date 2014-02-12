@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Server.h"
 #import <EyeTunes/EyeTunes.h>
+#import "DJTrack.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, ServerDelegate> {
     IBOutlet NSTableView *playlistTable;
@@ -19,7 +20,7 @@
     Server *_server;
     NSMutableArray *_playlists;
     NSMutableArray *_services;
-    NSMutableArray *voteCount;
+    //NSMutableArray *voteCount;
     NSString *textToSend, *_message;
 	NSInteger selectedPlaylist, selectedRow, connectedRow;
 	BOOL isConnectedToService;

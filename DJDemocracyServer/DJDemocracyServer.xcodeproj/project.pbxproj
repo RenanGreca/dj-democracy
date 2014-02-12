@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FB65BF418AAF0230028E704 /* DJTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB65BF318AAF0230028E704 /* DJTrack.m */; };
 		1FCE60341852928A00FF7553 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE60331852928A00FF7553 /* Server.m */; };
 		AAB2B3DF185288E100E4C2CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2B3DE185288E100E4C2CD /* Cocoa.framework */; };
 		AAB2B3E9185288E100E4C2CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */; };
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1FB65BF218AAF0230028E704 /* DJTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJTrack.h; sourceTree = "<group>"; };
+		1FB65BF318AAF0230028E704 /* DJTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJTrack.m; sourceTree = "<group>"; };
 		1FCE60321852928A00FF7553 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		1FCE60331852928A00FF7553 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +112,8 @@
 				AAB2B3F1185288E100E4C2CD /* AppDelegate.m */,
 				AAB2B3F3185288E200E4C2CD /* MainMenu.xib */,
 				AAB2B3E5185288E100E4C2CD /* Supporting Files */,
+				1FB65BF218AAF0230028E704 /* DJTrack.h */,
+				1FB65BF318AAF0230028E704 /* DJTrack.m */,
 			);
 			path = DJDemocracyServer;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				AAB2B3EB185288E100E4C2CD /* main.m in Sources */,
 				1FCE60341852928A00FF7553 /* Server.m in Sources */,
 				AAB2B3F2185288E100E4C2CD /* AppDelegate.m in Sources */,
+				1FB65BF418AAF0230028E704 /* DJTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
