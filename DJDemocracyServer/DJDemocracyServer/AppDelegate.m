@@ -68,8 +68,11 @@
 // Not quite sure which of these two methods are being used. They're similar, but might have different uses
 - (void)showSongs; {
     
-    
-    self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
+   // self.playlist =
+    ETPlaylist *newPlaylist = [self.playlists objectAtIndex:selectedPlaylist];
+    for (ETTrack *track in [newPlaylist tracks]) {
+        DJTrack *djTrack = 
+    }
     
     self.playlists = [self.playlist tracks];
     
@@ -89,7 +92,9 @@
     
     //self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
     
-    self.playlists = [playlist tracks];
+    
+    
+    //self.playlists = [playlist tracks];
     
     [playlistTable reloadData];
     
@@ -174,9 +179,13 @@
     //ETPlaylist *library = [eyetunes libraryPlaylist];
     NSError *error = nil;
     
-    NSUInteger i = 0;
+    NSLog(@"I am heeeere!");
+    
+    //NSUInteger i = 0;
     for (DJTrack *track in [self.playlist tracks]) {
-        NSData *data = [[self encodeTrack:track number:i] dataUsingEncoding:NSUTF8StringEncoding];
+        DJTrack *djTrack = [DJTrack newFromTrack:track];
+        NSLog(@"2. %ld", (long)djTrack.voteCount);
+        NSData *data = [[self encodeTrack:djTrack] dataUsingEncoding:NSUTF8StringEncoding];
         
         
         //[encoder encodeObject:self->inoutTrack forKey:@"track"];
@@ -208,30 +217,32 @@
 }
 
 // Encodes track title, artist and location into a string so we can send it to the client
-- (NSString *)encodeTrack:(DJTrack *)track number:(NSUInteger)i; {
+- (NSString *)encodeTrack:(DJTrack *)track; {
+    NSLog(@"%ld", (long)[track getVoteCount]);
+    
     NSString *str = @"";
     
     if (track.name.length > 0) {
         str = [str stringByAppendingString:track.name];
     }
     str = [str stringByAppendingString:@";"];
+    
     if (track.artist.length > 0) {
         str = [str stringByAppendingString:track.artist];
     }
     str = [str stringByAppendingString:@";"];
-    //NSLog(@"Here, maybe");
-    NSString *location = [track getPropertyAsPathForDesc:pDJTrackLocation];
+    
+    NSString *location = [track getPropertyAsPathForDesc:pETTrackLocation];
     if (location.length > 0) {
         str = [str stringByAppendingString:location];
     }
     str = [str stringByAppendingString:@";"];
-    NSString *index = [NSString stringWithFormat:@"%lu", i];
+    
+    NSString *index = [NSString stringWithFormat:@"%lu", [track getVoteCount]];
     if (location.length > 0) {
         str = [str stringByAppendingString:index];
     }
     str = [str stringByAppendingString:@";"];
-    
-    //NSLog(@"encoding track: %@", str);
     
     return str;
 }

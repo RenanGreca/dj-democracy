@@ -101,8 +101,8 @@
     str = [str stringByAppendingString:@";"];
     str = [str stringByAppendingString:[track objectAtIndex:2]];
     str = [str stringByAppendingString:@";"];
-#warning find out what to do here
-    str = [str stringByAppendingString:[voteCount objectAtIndex:idunno]];
+//#warning find out what to do here
+    str = [str stringByAppendingString:[track objectAtIndex:3]];
     str = [str stringByAppendingString:@";"];
 
    

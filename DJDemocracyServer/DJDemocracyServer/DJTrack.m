@@ -10,11 +10,21 @@
 
 @implementation DJTrack
 
-- (id) initWithDescriptor:(AEDesc *)desc
+- (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location
 {
-    self = [super initWithDescriptor:desc];
-    self->voteCount = 0;
-    return self;
+    DJTrack *track =  [[self alloc] init];
+}
+
+#pragma mark Setters
+
+- (void) setVoteCount:(NSInteger)voteCount {
+    self->_voteCount = voteCount;
+}
+
+#pragma mark Getters
+
+- (NSInteger) getVoteCount {
+    return self->_voteCount;
 }
 
 @end

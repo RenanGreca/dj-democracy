@@ -15,7 +15,7 @@
     IBOutlet NSTableView *playlistTable;
     IBOutlet NSTableView *deviceTable;
     //ETTrack *inoutTrack;
-    ETPlaylist *_playlist;
+    NSMutableArray *_playlist;
     NSWindow *window;
     Server *_server;
     NSMutableArray *_playlists;
