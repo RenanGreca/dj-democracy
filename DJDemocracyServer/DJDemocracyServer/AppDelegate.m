@@ -19,6 +19,7 @@
     self.message = @"Message";
 	connectedRow = -1;
 	self.services = [[NSMutableArray alloc] init];
+    self.playlist = [[NSMutableArray alloc] init];
 	
 	/*NSString *type = @"TestingProtocol";
     
@@ -71,14 +72,19 @@
    // self.playlist =
     ETPlaylist *newPlaylist = [self.playlists objectAtIndex:selectedPlaylist];
     for (ETTrack *track in [newPlaylist tracks]) {
-        DJTrack *djTrack = 
+        DJTrack *djTrack = [DJTrack newTrackCalled:[track name] by:[track artist] at:[track getPropertyAsPathForDesc:pETTrackLocation]];
+        [self.playlist addObject:djTrack];
     }
     
-    self.playlists = [self.playlist tracks];
+    //self.playlists = [self.playlist tracks];
     
-    [playlistTable reloadData];
+    [songTable reloadData];
     
     showingSongs = TRUE;
+    
+    
+    
+    //NSLog(@"%@", [[self.playlist objectAtIndex:0] title]);
     
     /*for (DJTrack *track in playlist.tracks) {
         
@@ -87,7 +93,7 @@
 }
 
 // I think this is used to reload the current playlist
-- (void)showSongs:(ETPlaylist *)playlist; {
+- (void)showSongs:(NSMutableArray *)playlist; {
     
     
     //self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
@@ -96,7 +102,7 @@
     
     //self.playlists = [playlist tracks];
     
-    [playlistTable reloadData];
+    [songTable reloadData];
     
     showingSongs = TRUE;
     
@@ -120,18 +126,19 @@
     //NSString *urlString = [NSString stringWithFormat:@"%@", [track getPropertyAsPathForDesc:pDJTrackLocation]];
     
     
-    NSLog(message);
+    //NSLog(message);
     
     NSArray *track = [message componentsSeparatedByString:@";"];
     
     //[voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
     
-    NSLog([track objectAtIndex:2]);
+    //NSLog([track objectAtIndex:2]);
     
-    NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    //NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [eyetunes addTrack:url toPlaylist:self.playlist];
+    //[eyetunes addTrack:url toPlaylist:self.playlist];
     
+    #pragma warning We have to think of how were going to display the songs
     [self showSongs:self.playlist];
 
     [self sendSong:message];
@@ -182,10 +189,10 @@
     NSLog(@"I am heeeere!");
     
     //NSUInteger i = 0;
-    for (DJTrack *track in [self.playlist tracks]) {
-        DJTrack *djTrack = [DJTrack newFromTrack:track];
-        NSLog(@"2. %ld", (long)djTrack.voteCount);
-        NSData *data = [[self encodeTrack:djTrack] dataUsingEncoding:NSUTF8StringEncoding];
+    for (DJTrack *track in self.playlist) {
+        //DJTrack *djTrack = [DJTrack newFromTrack:track];
+        //NSLog(@"2. %ld", (long)djTrack.voteCount);
+        NSData *data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
         
         
         //[encoder encodeObject:self->inoutTrack forKey:@"track"];
@@ -194,7 +201,7 @@
         //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
         [NSThread sleepForTimeInterval:0.01f];
         
-        NSLog(@"Sending song %@", track.name);
+        NSLog(@"Sending song %@", track.title);
         
         [self.server sendData:data error:&error];
     }
@@ -207,7 +214,7 @@
     
     NSArray *array = [str componentsSeparatedByString:@";"];
     
-    track.name = [array objectAtIndex:0];
+    track.title = [array objectAtIndex:0];
     track.artist = [array objectAtIndex:1];
     //track.location =
     //track.index = [array objectAtIndex:3];
@@ -222,8 +229,8 @@
     
     NSString *str = @"";
     
-    if (track.name.length > 0) {
-        str = [str stringByAppendingString:track.name];
+    if (track.title.length > 0) {
+        str = [str stringByAppendingString:track.title];
     }
     str = [str stringByAppendingString:@";"];
     
@@ -232,15 +239,14 @@
     }
     str = [str stringByAppendingString:@";"];
     
-    NSString *location = [track getPropertyAsPathForDesc:pETTrackLocation];
-    if (location.length > 0) {
-        str = [str stringByAppendingString:location];
+    if (track.location.length > 0) {
+        str = [str stringByAppendingString:track.location];
     }
     str = [str stringByAppendingString:@";"];
     
-    NSString *index = [NSString stringWithFormat:@"%lu", [track getVoteCount]];
-    if (location.length > 0) {
-        str = [str stringByAppendingString:index];
+    NSString *voteCount = [NSString stringWithFormat:@"%lu", [track getVoteCount]];
+    if (voteCount.length > 0) {
+        str = [str stringByAppendingString:voteCount];
     }
     str = [str stringByAppendingString:@";"];
     
@@ -264,6 +270,7 @@
         NSLog(@"error = %@", error);
     }
     
+    //NSLog(@"%@",[[self.playlist objectAtIndex:0] title]);
     NSLog(@"Server started!");
     
 }
@@ -366,6 +373,9 @@
         //NSLog(@"Count: %lu", (unsigned long)[self.playlists count]);
         return (int) [self.playlists count];
     }
+    if (aTableView == songTable) {
+        return (int) [self.playlist count];
+    }
     return (int) [self.services count];
     
 }
@@ -420,6 +430,18 @@
     
     if ( [tableColumn.identifier isEqualToString:@"Devices"] ) {
         cellView.textField.stringValue = [[self.services objectAtIndex:row] name];
+        return cellView;
+    }
+    
+    if ( [tableColumn.identifier isEqualToString:@"Songs"] ) {
+        NSLog(@"%@", [[self.playlist objectAtIndex:row] title]);
+        //[[self.playlist objectAtIndex:row] title;
+        cellView.textField.stringValue = [[self.playlist objectAtIndex:row] title];
+        return cellView;
+    }
+    
+    if ( [tableColumn.identifier isEqualToString:@"Votes"] ) {
+        cellView.textField.stringValue = [NSString stringWithFormat:@"%lu", [[self.playlist objectAtIndex:row] voteCount]];
         return cellView;
     }
     

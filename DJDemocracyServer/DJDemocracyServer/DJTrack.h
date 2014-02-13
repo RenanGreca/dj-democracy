@@ -11,15 +11,21 @@
 
 @interface DJTrack : NSObject
 
-@property NSString *title;
-@property NSString *artist;
-@property NSString *location;
-@property NSInteger voteCount;
+@property (readwrite, copy) NSString *title;
+@property (readwrite, copy) NSString *artist;
+@property (readwrite, copy) NSString *location;
+@property  NSInteger voteCount;
 
-- (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
++ (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
 
 - (NSInteger) getVoteCount;
 
 - (void) setVoteCount:(NSInteger)voteCount;
+
+- (NSString *) getTitle;
+
+- (NSString *) getArtist;
+
+- (NSString *) getLocation;
 
 @end

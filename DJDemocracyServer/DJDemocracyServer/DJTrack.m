@@ -10,14 +10,19 @@
 
 @implementation DJTrack
 
-- (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location
++ (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location
 {
     DJTrack *track =  [[self alloc] init];
+    track.title = [NSString stringWithString:title];
+    track.artist = [NSString stringWithString:artist];
+    track.location = [NSString stringWithString:location];
+    track.voteCount = 0;
+    return track;
 }
 
 #pragma mark Setters
 
-- (void) setVoteCount:(NSInteger)voteCount {
+- (void) writeVoteCount:(NSInteger)voteCount {
     self->_voteCount = voteCount;
 }
 
@@ -25,6 +30,18 @@
 
 - (NSInteger) getVoteCount {
     return self->_voteCount;
+}
+
+- (NSString *) getTitle {
+    return self.title;
+}
+
+- (NSString *) getArtist {
+    return self.artist;
+}
+
+- (NSString *) getLocation {
+    return self.location;
 }
 
 @end
