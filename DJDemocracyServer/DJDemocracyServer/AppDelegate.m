@@ -113,7 +113,7 @@
 }
 
 - (void)addSongToPlaylist:(NSString *)message {
-    EyeTunes *eyetunes = [EyeTunes sharedInstance];
+    //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
     //ETPlaylist *playlist = [self.playlists objectAtIndex:selectedPlaylist];
     
@@ -128,7 +128,10 @@
     
     //NSLog(message);
     
-    NSArray *track = [message componentsSeparatedByString:@";"];
+    NSArray *array = [message componentsSeparatedByString:@";"];
+    
+    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
+    [track setVoteCount:[[array objectAtIndex:3] intValue]];
     
     //[voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
     
@@ -137,6 +140,8 @@
     //NSURL *url = [NSURL URLWithString:[[track objectAtIndex:2] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     //[eyetunes addTrack:url toPlaylist:self.playlist];
+    
+    [self.playlist addObject:track];
     
     #pragma warning We have to think of how were going to display the songs
     [self showSongs:self.playlist];
