@@ -22,6 +22,8 @@
 
 - (void) setVoteCount:(NSInteger)voteCount;
 
+- (void) incVoteCount;
+
 - (NSString *) getTitle;
 
 - (NSString *) getArtist;

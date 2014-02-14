@@ -20,6 +20,10 @@
     return track;
 }
 
+- (void) incVoteCount {
+    self->_voteCount = self->_voteCount + 1;
+}
+
 #pragma mark Setters
 
 - (void) writeVoteCount:(NSInteger)voteCount {

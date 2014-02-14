@@ -151,6 +151,30 @@
     //[eyetunes playTrack:track];
 }
 
+- (void)increaseVoteCount:(NSString *)message {
+    NSArray *array = [message componentsSeparatedByString:@";"];
+    
+    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
+    [track setVoteCount:[[array objectAtIndex:3] intValue]];
+    
+    
+    NSInteger i = 0;
+    for (i=0; i<[self.playlist count]; i++) {
+        if ([[[self.playlist objectAtIndex:i] getLocation] caseInsensitiveCompare:track.location] == NSOrderedSame) {
+            [[self.playlist objectAtIndex:i] incVoteCount];
+            break;
+        }
+    }
+    
+    for (; i>0; i--) {
+        if ([[self.playlist objectAtIndex:i] getVoteCount] > [[self.playlist objectAtIndex:i-1] getVoteCount]) {
+            [self.playlist exchangeObjectAtIndex:i withObjectAtIndex:i-1];
+        }
+    }
+    
+    [songTable reloadData];
+}
+
 /*- (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
         self->inoutTrack = [decoder decodeObjectForKey:@"track"];
@@ -320,7 +344,7 @@
     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
         self.message = message;
-        [self addSongToPlaylist:message];
+        [self increaseVoteCount:message];
         //NSLog(message);
     } else {
         self.message = @"no data received";
