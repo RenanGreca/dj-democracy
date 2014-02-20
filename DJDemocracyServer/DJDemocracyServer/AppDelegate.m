@@ -302,8 +302,27 @@
     //NSLog(@"%@",[[self.playlist objectAtIndex:0] title]);
     NSLog(@"Server started!");
     
+    [NSThread detachNewThreadSelector:@selector(monitorTrack) toTarget:self withObject:nil];
+    
 }
 
+- (void) monitorTrack {
+    EyeTunes *eyetunes = [EyeTunes sharedInstance];
+
+    ETTrack *previousTrack = [eyetunes currentTrack];
+    
+    NSLog(@"%@", [previousTrack name]);
+    
+    while (true) {
+        ETTrack *currentTrack = [eyetunes currentTrack];
+        NSLog(@"%@", [currentTrack name]);
+        if ([[currentTrack location] compare:[previousTrack location]] != NSOrderedSame) {
+            [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
+        }
+        previousTrack = currentTrack;
+        [NSThread sleepForTimeInterval:1.0f];
+    }
+}
 
 
 #pragma mark -
@@ -345,6 +364,7 @@
     if(nil != message || [message length] > 0) {
         self.message = message;
         [self increaseVoteCount:message];
+        [self sendSongs:nil];
         //NSLog(message);
     } else {
         self.message = @"no data received";

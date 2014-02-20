@@ -81,7 +81,9 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.text = [[self.songs objectAtIndex:indexPath.row] objectAtIndex:0];
+    cell.textLabel.text = [[self.songs objectAtIndex:indexPath.row] objectAtIndex:3];
+    cell.textLabel.text = [cell.textLabel.text stringByAppendingString:[[self.songs objectAtIndex:indexPath.row] objectAtIndex:0]];
+    //[[self.songs objectAtIndex:indexPath.row] objectAtIndex:0];
     
     return cell;
 }
@@ -117,6 +119,8 @@
     NSLog(@"Sending song");
     
     [self.server sendData:data error:&error];
+    self.songs = [[NSMutableArray alloc] init];
+
 }
 
 @end
