@@ -151,6 +151,7 @@
     //[eyetunes playTrack:track];
 }
 
+// Find the received track in the playlist and increment its vote count. There might be a better way of doing this?
 - (void)increaseVoteCount:(NSString *)message {
     NSArray *array = [message componentsSeparatedByString:@";"];
     
@@ -166,13 +167,31 @@
         }
     }
     
-    for (; i>0; i--) {
+    /*for (; i>0; i--) {
         if ([[self.playlist objectAtIndex:i] getVoteCount] > [[self.playlist objectAtIndex:i-1] getVoteCount]) {
             [self.playlist exchangeObjectAtIndex:i withObjectAtIndex:i-1];
         }
-    }
+    }*/
+    
+    [self.playlist sortUsingFunction:voteSort context:NULL];
     
     [songTable reloadData];
+}
+
+// Used to sort our playlist in descending order.
+NSInteger voteSort(id num1, id num2, void *context) {
+    
+    NSInteger v1 = [num1 getVoteCount];
+    NSInteger v2 = [num2 getVoteCount];
+    
+    // > and < swapped from usual example to descend instead of ascend.
+    if (v1 > v2)
+        return NSOrderedAscending;
+    else if (v1 < v2)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+    
 }
 
 /*- (id)initWithCoder:(NSCoder *)decoder {
@@ -311,16 +330,18 @@
 
     ETTrack *previousTrack = [eyetunes currentTrack];
     
-    NSLog(@"%@", [previousTrack name]);
+    //NSLog(@"%@", [previousTrack name]);
     
     while (true) {
         ETTrack *currentTrack = [eyetunes currentTrack];
-        NSLog(@"%@", [currentTrack name]);
         if ([[currentTrack location] compare:[previousTrack location]] != NSOrderedSame) {
+            NSLog(@"Swithing track to: %@", [currentTrack name]);
             [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
+            [[self.playlist objectAtIndex:0] setVoteCount:0];
+            [self.playlist sortUsingFunction:voteSort context:NULL];
+            previousTrack = currentTrack;
         }
-        previousTrack = currentTrack;
-        [NSThread sleepForTimeInterval:1.0f];
+        [NSThread sleepForTimeInterval:0.05f];
     }
 }
 

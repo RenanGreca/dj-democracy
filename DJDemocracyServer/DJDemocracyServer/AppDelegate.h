@@ -42,5 +42,7 @@
 - (IBAction)sendSongs:(id)sender;
 - (IBAction)startServer:(id)sender;
 
+NSInteger voteSort(id num1, id num2, void *context);
+
 
 @end
