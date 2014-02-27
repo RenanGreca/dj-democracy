@@ -18,5 +18,6 @@
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)moreComing;
 - (void)removeServer:(NSNetService *)service moreComing:(BOOL)moreComing;
+- (IBAction)unwindToServers:(UIStoryboardSegue *)segue;
 
 @end

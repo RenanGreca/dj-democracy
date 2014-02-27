@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A780CFAC18BC0E8A00F69FDE /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A780CFAB18BC0E8A00F69FDE /* OverviewViewController.m */; };
+		A7821A5218B8972300D19E93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7821A5118B8972300D19E93 /* MainStoryboard.storyboard */; };
 		C856BCB1185A651C00E956A8 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = C856BCB0185A651C00E956A8 /* Server.m */; };
 		C8594D961861472300E7644D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8594D951861472300E7644D /* Default-568h@2x.png */; };
 		C8A0EAA4185290AB006C1EB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A0EAA3185290AB006C1EB2 /* UIKit.framework */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A780CFAA18BC0E8A00F69FDE /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
+		A780CFAB18BC0E8A00F69FDE /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
+		A7821A5118B8972300D19E93 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C856BCAF185A651C00E956A8 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		C856BCB0185A651C00E956A8 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		C8594D951861472300E7644D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -101,6 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				C8A69D571861661C00954BFD /* ServerView.xib */,
+				A7821A5118B8972300D19E93 /* MainStoryboard.storyboard */,
+				A780CFAA18BC0E8A00F69FDE /* OverviewViewController.h */,
+				A780CFAB18BC0E8A00F69FDE /* OverviewViewController.m */,
 				C8A340A21861785100413DF5 /* SongView.xib */,
 				C8A340A41861790800413DF5 /* SongViewController.h */,
 				C8A340A51861790800413DF5 /* SongViewController.m */,
@@ -175,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7821A5218B8972300D19E93 /* MainStoryboard.storyboard in Resources */,
 				C8A0EAAE185290AC006C1EB2 /* InfoPlist.strings in Resources */,
 				C8594D961861472300E7644D /* Default-568h@2x.png in Resources */,
 				C8A69D581861661C00954BFD /* ServerView.xib in Resources */,
@@ -191,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A0EAB0185290AC006C1EB2 /* main.m in Sources */,
+				A780CFAC18BC0E8A00F69FDE /* OverviewViewController.m in Sources */,
 				C8A0EAB4185290AC006C1EB2 /* AppDelegate.m in Sources */,
 				C8A0EABA185290AC006C1EB2 /* ServerViewController.m in Sources */,
 				C856BCB1185A651C00E956A8 /* Server.m in Sources */,

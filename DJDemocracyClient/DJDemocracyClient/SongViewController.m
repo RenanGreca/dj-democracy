@@ -38,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.title = @"Service Browser";
+    //self.title = @"Service Browser";
     self.songs = [[NSMutableArray alloc] init];
     [self.tableView reloadData];
     
@@ -48,6 +48,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (IBAction)unwindToOverview:(UIStoryboardSegue *)segue{
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,9 +66,9 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Songs Available";
-}
+//- (NSString *)tableView:(UITableView *)tableView //titleForHeaderInSection:(NSInteger)section {
+  //  return @"Songs Available";
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //NSLog(@"Count of songs: %d", self.songs.count);

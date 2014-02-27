@@ -19,6 +19,7 @@
 @property (nonatomic, retain) Server *server;
 
 - (void) addSong:(NSString*) message;
+- (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
 
 //@property (strong, nonatomic) NSMutableArray *songs;
 

@@ -23,9 +23,9 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Current DJs";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+ //   return @"Current DJs";
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.services.count;
@@ -61,6 +61,10 @@
 
 #pragma mark - View lifecycle
 
+- (IBAction)unwindToServers:(UIStoryboardSegue *)segue{
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -83,7 +87,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.title = @"Service Browser";
+    //self.title = @"Service Browser";
     self.services = nil;
     [self.tableView reloadData];
     
