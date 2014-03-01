@@ -12,25 +12,39 @@
 
 @implementation AppDelegate
 
-@synthesize window;
-@synthesize navigationController;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     NSString *type = @"TestingProtocol";
     _server = [[Server alloc] initWithProtocol:type];
     _server.delegate = self;
-    serverViewController.server = _server;
-    songViewController.server = _server;
+    //songViewController.server = _server;
     
     NSError *error = nil;
     if(![_server start:&error]) {
         NSLog(@"error: = %@", error);
     }
-     
-    [window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+    
+    mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                     bundle: nil];
+    
+    //navController = [[UINavigationController alloc] initWithRootViewController:[self.window rootViewController]];
+    
+    //serverViewController = (ServerViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"ServerView"];
+        
+    NSArray *viewControllers = [[self.window rootViewController] childViewControllers];
+    
+    serverViewController = [viewControllers objectAtIndex:0];
+    
+    
+    
+    //self.window.rootViewController = serverViewController;
+    
+    //serverViewController.server = _server;
+    
+    
+    //[window addSubview:[navigationController view]];
+    //[window makeKeyAndVisible];
     
     NSLog(@"App Started");
     
@@ -45,12 +59,12 @@
     // this is called when the remote side finishes joining with the socket as
     // notification that the other side has made its connection with this side
     serverViewController.server = server;
-    [self.navigationController pushViewController:songViewController animated:YES];
+    //[self.navigationController pushViewController:songViewController animated:YES];
 }
 
 - (void)serverStopped:(Server *)server {
     NSLog(@"Server stopped");
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)server:(Server *)server didNotStart:(NSDictionary *)errorDict {
@@ -62,7 +76,7 @@
     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
         //NSLog(@"%@", message);
-        [songViewController addSong:message];
+        //[songViewController addSong:message];
     } else {
         NSLog(@"%@", @"no data received");
     }
@@ -70,10 +84,13 @@
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict {
     NSLog(@"Server lost connection %@", errorDict);
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)serviceAdded:(NSNetService *)service moreComing:(BOOL)more {
+    NSLog(@"Service received");
+    NSLog(@"%@ %d", service.name, more);
+    
     [serverViewController addServer:service moreComing:more];
 }
 

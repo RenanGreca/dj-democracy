@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KCh-LU-mEF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KCh-LU-mEF">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -8,19 +8,22 @@
         <!--Server View Controller - DJ Servers-->
         <scene sceneID="0SX-Zh-daV">
             <objects>
-                <tableViewController id="ze7-VI-lu5" customClass="ServerViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ServerView" id="ze7-VI-lu5" customClass="ServerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cVD-o5-BuW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XBZ-VH-c15">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XBZ-VH-c15">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XBZ-VH-c15" id="IA0-5J-k9n">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="oFx-2x-BR1" kind="push" id="rm7-Oc-gXK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -30,9 +33,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="DJ Servers" id="Vf7-o9-6OD"/>
-                    <connections>
-                        <segue destination="oFx-2x-BR1" kind="modal" id="eke-OU-ldW"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTP-Ci-sXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,13 +245,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oFx-2x-BR1" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xFb-9K-rO0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Qb-ZK-lAv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bJQ-Fy-bkQ" kind="relationship" relationship="rootViewController" id="kE5-V2-fVL"/>
+                        <segue destination="bJQ-Fy-bkQ" kind="relationship" relationship="rootViewController" id="B0w-15-ns0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r58-IG-Dgo" userLabel="First Responder" sceneMemberID="firstResponder"/>

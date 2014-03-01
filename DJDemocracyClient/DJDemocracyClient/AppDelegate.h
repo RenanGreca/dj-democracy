@@ -16,16 +16,20 @@
     Server *_server;
     NSArray *servers;
     NSArray *playlist;
-    UIWindow *window;
-    UINavigationController *navigationController;
-    IBOutlet ServerViewController *serverViewController;
-    IBOutlet SongViewController *songViewController;
+    UIStoryboard *mainStoryboard;
+    ServerViewController *serverViewController;
+    UINavigationController *navController;
+    //UIWindow *window;
+    //UINavigationController *navigationController;
+    //IBOutlet ServerViewController *serverViewController;
+    //IBOutlet SongViewController *songViewController;
     //IBOutlet SongSelectionViewController *songSelectionVC;
 }
 
+@property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) IBOutlet UIWindow *window;
-@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
+//@property (strong, nonatomic) IBOutlet UIWindow *window;
+//@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
 
 
 @end

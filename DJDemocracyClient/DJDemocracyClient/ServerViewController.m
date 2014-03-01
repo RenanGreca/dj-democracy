@@ -39,7 +39,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.text = [[self.services objectAtIndex:indexPath.row] name];
+    cell.textLabel.text = [[self.services objectAtIndex:indexPath.row] name];
     
     return cell;
 }
@@ -74,6 +74,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"View is loading");
+    self.services = [[NSMutableArray alloc] init];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -112,6 +114,7 @@
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)more;
 {
+    NSLog(@"%@", service.name);
     [self.services addObject:service];
     if(!more) {
         [self.tableView reloadData];
