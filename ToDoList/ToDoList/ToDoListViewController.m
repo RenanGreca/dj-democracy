@@ -38,6 +38,11 @@
     }
 }
 
+-(void)addObjectToList:(id)object {
+    [self.toDoItems addObject:object];
+    [self.tableView reloadData];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

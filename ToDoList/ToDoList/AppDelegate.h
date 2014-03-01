@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Server.h"
+#import "ToDoListViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, ServerDelegate> {
+    Server *_server;
+    NSArray *servers;
+    NSArray *playlist;
+    UIStoryboard *main;
+    ToDoListViewController *toDoListViewController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

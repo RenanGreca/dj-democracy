@@ -83,7 +83,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 - (id)init {
     self = [super init];
     if(nil == self) {
-        [self initWithDomainName:@"" 
+        self = [self initWithDomainName:@""
                         protocol:@"_Server._tcp."
                             name:@""];
     }
@@ -94,7 +94,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 - (id)initWithProtocol:(NSString *)protocol {
     self = [super init];
     if(nil != self) {
-        [self initWithDomainName:@"" 
+        self = [self initWithDomainName:@""
                         protocol:[NSString stringWithFormat:@"_%@._tcp.", protocol]
                             name:@""];
     }
@@ -124,7 +124,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 // if you don't care about the error you can pass NULL
 - (BOOL)start:(NSError **)error {
     BOOL successful = YES;
-    CFSocketContext socketCtxt = {0, self, NULL, NULL, NULL};
+    CFSocketContext socketCtxt = {0, (__bridge void *)(self), NULL, NULL, NULL};
     _socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, 
                              IPPROTO_TCP, 
                              kCFSocketAcceptCallBack,
@@ -169,7 +169,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
         addr4.sin_addr.s_addr = htonl(INADDR_ANY);
         NSData *address4 = [NSData dataWithBytes:&addr4 length:sizeof(addr4)];
         
-        if (kCFSocketSuccess != CFSocketSetAddress(_socket, (CFDataRef)address4)) {
+        if (kCFSocketSuccess != CFSocketSetAddress(_socket, (__bridge CFDataRef)address4)) {
             if (error) *error = [[NSError alloc] 
                                  initWithDomain:ServerErrorDomain
                                  code:kServerCouldNotBindToIPv4Address
@@ -179,7 +179,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
             successful = NO;
         } else {
             // now that the binding was successful, we get the port number 
-            NSData *addr = [(NSData *)CFSocketCopyAddress(_socket) autorelease];
+            NSData *addr = (__bridge NSData *)CFSocketCopyAddress(_socket);
             memcpy(&addr4, [addr bytes], [addr length]);
             self.port = ntohs(addr4.sin_port);
             
@@ -279,7 +279,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     self.protocol = nil;
     self.name = nil;
     _delegate = nil;
-    [super dealloc];
+    //[super dealloc];
 }
 
 #pragma mark NSNetServiceDelegate methods
@@ -424,9 +424,9 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
         [self _connectedToInputStream:inputStream outputStream:outputStream];
     }
     
-    [inputStream release];
+    //[inputStream release];
     inputStream = nil;
-    [outputStream release];
+    //[outputStream release];
     outputStream = nil;
 }
 
@@ -452,18 +452,17 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 	[self.browser stop];
     self.browser = nil;
 
-	self.browser = [[[NSNetServiceBrowser alloc] init] autorelease];
+	self.browser = [[NSNetServiceBrowser alloc] init];
 	self.browser.delegate = self;
 	[self.browser searchForServicesOfType:type inDomain:@"local"];
 }
 
 - (BOOL)_publishNetService {
     BOOL successful = NO;
-    self.netService = [[[NSNetService alloc] initWithDomain:self.domain
+    self.netService = [[NSNetService alloc] initWithDomain:self.domain
                                                        type:self.protocol
                                                        name:self.name
-                                                       port:self.port]
-                       autorelease];
+                                                       port:self.port];
     if(self.netService != nil) {
         [self.netService scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                    forMode:NSRunLoopCommonModes];
@@ -507,7 +506,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     // this function is called because it was registered in the
     // socket create method
     if (kCFSocketAcceptCallBack == type) { 
-        Server *server = (Server *)info;
+        Server *server = (__bridge Server *)info;
         // on an accept the data is the native socket handle
         CFSocketNativeHandle nativeSocketHandle = *(CFSocketNativeHandle *)data;
         // create the read and write streams for the connection to the other process
@@ -522,8 +521,8 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
             CFWriteStreamSetProperty(writeStream, 
                                      kCFStreamPropertyShouldCloseNativeSocket,
                                      kCFBooleanTrue);
-            [server _connectedToInputStream:(NSInputStream *)readStream
-                               outputStream:(NSOutputStream *)writeStream];
+            [server _connectedToInputStream:(__bridge NSInputStream *)readStream
+                               outputStream:(__bridge NSOutputStream *)writeStream];
         } else {
             // on any failure, need to destroy the CFSocketNativeHandle 
             // since we are not going to use it any more

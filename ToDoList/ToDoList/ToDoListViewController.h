@@ -12,4 +12,6 @@
 
 @interface ToDoListViewController : UITableViewController
 
+-(void)addObjectToList:(id)object;
+
 @end

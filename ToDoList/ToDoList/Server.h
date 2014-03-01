@@ -57,7 +57,7 @@ typedef enum {
 	BOOL _outputStreamReady; // when output stream is ready to read from this turns to YES
     BOOL _outputStreamHasSpace; // when there is space in the output stream this is YES
     
-    id<ServerDelegate> _delegate; // see docs on delegate protocol
+    //id<ServerDelegate> _delegate; // see docs on delegate protocol
     
 	NSNetServiceBrowser *_browser; // the bonjour service browser
     NSNetService *_currentlyResolvingService; // the service we are currently trying to resolve

@@ -23,6 +23,7 @@
 		1FD32C41184A9D0200339F50 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FD32C3F184A9D0200339F50 /* InfoPlist.strings */; };
 		1FD32C43184A9D0200339F50 /* ToDoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD32C42184A9D0200339F50 /* ToDoListTests.m */; };
 		1FD32C4D184AAF9C00339F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD32C4C184AAF9C00339F50 /* Main.storyboard */; };
+		1FD5A8F618C18C8100E6F5CC /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5A8F518C18C8100E6F5CC /* Server.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		1FD32C40184A9D0200339F50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1FD32C42184A9D0200339F50 /* ToDoListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoListTests.m; sourceTree = "<group>"; };
 		1FD32C4C184AAF9C00339F50 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1FD5A8F418C18C8100E6F5CC /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		1FD5A8F518C18C8100E6F5CC /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 		1FD32C23184A9D0200339F50 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				1FD5A8F418C18C8100E6F5CC /* Server.h */,
+				1FD5A8F518C18C8100E6F5CC /* Server.m */,
 				1FD32C2C184A9D0200339F50 /* AppDelegate.h */,
 				1FD32C2D184A9D0200339F50 /* AppDelegate.m */,
 				1FD32C4C184AAF9C00339F50 /* Main.storyboard */,
@@ -262,6 +267,7 @@
 				1F0889CB18A3F68200A55043 /* ToDoItem.m in Sources */,
 				1FD32C2E184A9D0200339F50 /* AppDelegate.m in Sources */,
 				1FD32C2A184A9D0200339F50 /* main.m in Sources */,
+				1FD5A8F618C18C8100E6F5CC /* Server.m in Sources */,
 				1FBA199F189B6170007F4314 /* AddToDoItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
