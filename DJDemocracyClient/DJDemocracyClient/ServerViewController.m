@@ -46,7 +46,11 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.server connectToRemoteService:[self.services objectAtIndex: indexPath.row]];
+    [tableView deselectRowAtIndexPath:indexPath animated: NO];
 }
+
+
+
 
 
 #pragma mark - Service updates
