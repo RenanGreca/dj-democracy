@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "DJTrack.h"
+#include "Server.h"
 
 @interface OverviewViewController : UITableViewController
+
+@property (nonatomic, retain) Server *server;
 
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
 

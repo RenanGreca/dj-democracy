@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <EyeTunes/EyeTunes.h>
 
 @interface DJTrack : NSObject
 

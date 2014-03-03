@@ -51,6 +51,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) addSong:(NSString *)message {
+    NSArray *array = [message componentsSeparatedByString:@";" ];
+    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
+    [track setVoteCount:[[array objectAtIndex:3] intValue]];
+    NSLog(@"Adding song %@", [track objectAtIndex:0]);
+    
+    [self.songs addObject:track];
+    //NSLog(@"Count of songs: %d", self.songs.count);
+    [self.tableView reloadData];
+}
+
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue{
     
 }
@@ -73,7 +84,7 @@
 {
     // Return the number of rows in the section.
     if (section == 0) {
-        return [self.songs count];
+        return 5;
     }
     return 1;
 }
@@ -99,9 +110,9 @@
 
     
     if (indexPath.section == 0) {
-        [voteCount setText:@"1"];
-        [trackTitle setText:[self.songs objectAtIndex:indexPath.row]];
-        [artistName setText:@"Artist Name"];
+        [voteCount setText:[NSString stringWithFormat:@"%lu",(long)[[self.songs objectAtIndex:indexPath.row] voteCount]]];
+        [trackTitle setText:[[self.songs objectAtIndex:indexPath.row] title]];
+        [artistName setText:[[self.songs objectAtIndex:indexPath.row] artist]];
         //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
         //cell.detailTextLabel.text = @"Artist Name";
         
