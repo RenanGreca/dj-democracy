@@ -10,9 +10,21 @@
 
 @interface OverviewViewController ()
 
+@property NSMutableArray *songs;
+
 @end
 
 @implementation OverviewViewController
+
+- (void)loadInitialData {
+    NSString *item1 = @"Bohemian Rhapsody";
+    [self.songs addObject:item1];
+    NSString *item2 = @"Let it Be";
+    [self.songs addObject:item2];
+    NSString *item3 = @"Smoke on the Water";
+    [self.songs addObject:item3];
+    [self.tableView reloadData];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,8 +37,13 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"Loading Overview");
+    
     [super viewDidLoad];
+    
+    self.songs = [[NSMutableArray alloc] init];
 
+    [self loadInitialData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -48,27 +65,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (section == 0) {
+        return [self.songs count];
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    
+    NSLog(@"Filling TableView");
+    
+    static NSString *CellIdentifier = @"SongCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
+    if (indexPath.section == 0) {
+    
+        cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = @"Artist Name";
+        
+    } else {
+        cell.textLabel.text = @"Random Song";
+        cell.detailTextLabel.text = @"Artist Name";
+    }
+    
+    
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -121,4 +154,8 @@
 
  */
 
+- (void)dealloc {
+    [UITableView release];
+    [super dealloc];
+}
 @end

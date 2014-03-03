@@ -12,9 +12,11 @@
 @interface ServerViewController : UITableViewController {
     Server *_server;
     NSMutableArray *_services;
+    //UIViewController *overviewViewController;
 }
 
 @property (nonatomic, retain) Server *server;
+@property (nonatomic, retain) UIViewController *overviewViewController;
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)moreComing;
 - (void)removeServer:(NSNetService *)service moreComing:(BOOL)moreComing;

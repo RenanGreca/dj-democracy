@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Server.h"
+#import "ServerViewController.h"
+#import "SongViewController.h"
+#import "OverviewViewController.h"
 
 @class ServerViewController;
 @class SongViewController;
@@ -18,6 +21,7 @@
     NSArray *playlist;
     UIStoryboard *mainStoryboard;
     ServerViewController *serverViewController;
+    OverviewViewController *overviewViewController;
     UINavigationController *navController;
     //UIWindow *window;
     //UINavigationController *navigationController;

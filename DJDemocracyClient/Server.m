@@ -240,7 +240,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     self.currentlyResolvingService = nil;
     
     self.currentlyResolvingService = selectedService;
-    self.currentlyResolvingService.delegate = self;
+    self.currentlyResolvingService.delegate = (id) self;
     [self.currentlyResolvingService resolveWithTimeout:0.0];
 }
 
@@ -436,13 +436,13 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     [self _stopStreams];
     
     self.inputStream = inputStream;
-    self.inputStream.delegate = self;
+    self.inputStream.delegate = (id) self;
     [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                 forMode:NSDefaultRunLoopMode];
     [self.inputStream open];
     
     self.outputStream = outputStream;
-    self.outputStream.delegate = self;
+    self.outputStream.delegate = (id) self;
     [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                  forMode:NSDefaultRunLoopMode];
     [self.outputStream open];
@@ -453,7 +453,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     self.browser = nil;
 
 	self.browser = [[[NSNetServiceBrowser alloc] init] autorelease];
-	self.browser.delegate = self;
+	self.browser.delegate = (id) self;
 	[self.browser searchForServicesOfType:type inDomain:@"local"];
 }
 
@@ -468,7 +468,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
         [self.netService scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                    forMode:NSRunLoopCommonModes];
         [self.netService publish];
-        self.netService.delegate = self;
+        self.netService.delegate = (id) self;
         successful = YES;
     }
     return successful;

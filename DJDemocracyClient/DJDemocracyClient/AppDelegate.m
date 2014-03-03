@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "ServerViewController.h"
-#import "SongViewController.h"
 
 @implementation AppDelegate
 
@@ -32,10 +30,16 @@
     
     //serverViewController = (ServerViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"ServerView"];
         
-    NSArray *viewControllers = [[self.window rootViewController] childViewControllers];
+    serverViewController = [[[self.window rootViewController] childViewControllers] objectAtIndex:0];
+    overviewViewController = (OverviewViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"OverviewView"];
+
     
-    serverViewController = [viewControllers objectAtIndex:0];
+    navController = [[self.window rootViewController] navigationController];
     
+    serverViewController.overviewViewController = overviewViewController;
+    
+    //serverViewController.server = _server;
+    //serverViewController.navigationController = navController;
     
     
     //self.window.rootViewController = serverViewController;
@@ -89,7 +93,7 @@
 
 - (void)serviceAdded:(NSNetService *)service moreComing:(BOOL)more {
     NSLog(@"Service received");
-    NSLog(@"%@ %d", service.name, more);
+    //NSLog(@"%@ %d", service.name, more);
     
     [serverViewController addServer:service moreComing:more];
 }

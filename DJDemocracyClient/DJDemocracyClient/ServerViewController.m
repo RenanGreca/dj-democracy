@@ -36,7 +36,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        //cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     cell.textLabel.text = [[self.services objectAtIndex:indexPath.row] name];
@@ -47,6 +48,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.server connectToRemoteService:[self.services objectAtIndex: indexPath.row]];
     [tableView deselectRowAtIndexPath:indexPath animated: NO];
+    [self.navigationController pushViewController:self.overviewViewController animated:YES];
 }
 
 
@@ -118,7 +120,7 @@
 
 - (void)addServer:(NSNetService *)service moreComing:(BOOL)more;
 {
-    NSLog(@"%@", service.name);
+    //NSLog(@"%@", service.name);
     [self.services addObject:service];
     if(!more) {
         [self.tableView reloadData];
