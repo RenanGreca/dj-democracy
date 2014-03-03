@@ -78,6 +78,11 @@
     return 1;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return 60;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -88,13 +93,22 @@
     
     // Configure the cell...
     
-    if (indexPath.section == 0) {
+    UILabel *voteCount = (UILabel*) [cell viewWithTag:1];
+    UILabel *trackTitle = (UILabel*) [cell viewWithTag:2];
+    UILabel *artistName = (UILabel*) [cell viewWithTag:3];
+
     
-        cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = @"Artist Name";
+    if (indexPath.section == 0) {
+        [voteCount setText:@"1"];
+        [trackTitle setText:[self.songs objectAtIndex:indexPath.row]];
+        [artistName setText:@"Artist Name"];
+        //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
+        //cell.detailTextLabel.text = @"Artist Name";
         
     } else {
-        cell.textLabel.text = @"Random Song";
+        [voteCount setText:@"1"];
+        [trackTitle setText:@"Random Song"];
+        [artistName setText:@"Artist Name"];
         cell.detailTextLabel.text = @"Artist Name";
     }
     
