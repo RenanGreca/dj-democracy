@@ -43,7 +43,7 @@
     
     self.songs = [[NSMutableArray alloc] init];
 
-    [self loadInitialData];
+    //[self loadInitialData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -55,7 +55,7 @@
     NSArray *array = [message componentsSeparatedByString:@";" ];
     DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
     [track setVoteCount:[[array objectAtIndex:3] intValue]];
-    NSLog(@"Adding song %@", [track objectAtIndex:0]);
+    NSLog(@"Adding song %@", [track title]);
     
     [self.songs addObject:track];
     //NSLog(@"Count of songs: %d", self.songs.count);
@@ -84,9 +84,11 @@
 {
     // Return the number of rows in the section.
     if (section == 0) {
+        if ([self.songs count] < 5)
+            return [self.songs count];
         return 5;
     }
-    return 1;
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -104,24 +106,29 @@
     
     // Configure the cell...
     
-    UILabel *voteCount = (UILabel*) [cell viewWithTag:1];
+    UILabel *voteCounter = (UILabel*) [cell viewWithTag:1];
     UILabel *trackTitle = (UILabel*) [cell viewWithTag:2];
     UILabel *artistName = (UILabel*) [cell viewWithTag:3];
-
     
-    if (indexPath.section == 0) {
-        [voteCount setText:[NSString stringWithFormat:@"%lu",(long)[[self.songs objectAtIndex:indexPath.row] voteCount]]];
-        [trackTitle setText:[[self.songs objectAtIndex:indexPath.row] title]];
-        [artistName setText:[[self.songs objectAtIndex:indexPath.row] artist]];
-        //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
-        //cell.detailTextLabel.text = @"Artist Name";
+    //if ([self.songs count] > 0) {
+    
+        DJTrack *track = [self.songs objectAtIndex:indexPath.row];
         
-    } else {
-        [voteCount setText:@"1"];
-        [trackTitle setText:@"Random Song"];
-        [artistName setText:@"Artist Name"];
-        cell.detailTextLabel.text = @"Artist Name";
-    }
+        
+        if (indexPath.section == 0) {
+            [voteCounter setText:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
+            [trackTitle setText:[track title]];
+            [artistName setText:[track artist]];
+            //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
+            //cell.detailTextLabel.text = @"Artist Name";
+        
+        } else {
+            [voteCounter setText:@"1"];
+            [trackTitle setText:@"Random Song"];
+            [artistName setText:@"Artist Name"];
+            cell.detailTextLabel.text = @"Artist Name";
+        }
+    //}
     
     
     return cell;

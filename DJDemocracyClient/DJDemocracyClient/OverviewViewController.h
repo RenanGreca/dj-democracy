@@ -16,4 +16,6 @@
 
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
 
+- (void) addSong:(NSString *)message;
+
 @end

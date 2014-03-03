@@ -28,6 +28,7 @@
 
 - (void) addSong:(NSString *)message {
     NSArray *track = [message componentsSeparatedByString:@";" ];
+    
     NSLog(@"Adding song %@", [track objectAtIndex:0]);
     
     [self.songs addObject:track];
