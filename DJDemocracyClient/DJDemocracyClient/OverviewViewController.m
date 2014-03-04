@@ -17,12 +17,11 @@
 @implementation OverviewViewController
 
 - (void)loadInitialData {
-    NSString *item1 = @"Bohemian Rhapsody";
-    [self.songs addObject:item1];
-    NSString *item2 = @"Let it Be";
-    [self.songs addObject:item2];
-    NSString *item3 = @"Smoke on the Water";
-    [self.songs addObject:item3];
+    [self.songs addObject:[DJTrack newTrackCalled:@"Bohemian Rhapsody" by:@"Queen" at:@"..."]];
+    [self.songs addObject:[DJTrack newTrackCalled:@"Let It Be" by:@"The Beatles" at:@"..."]];
+    [self.songs addObject:[DJTrack newTrackCalled:@"Smoke on the Water" by:@"Deep Purple" at:@"..."]];
+    [self.songs addObject:[DJTrack newTrackCalled:@"Hey Jude" by:@"The Beatles" at:@"..."]];
+    [self.songs addObject:[DJTrack newTrackCalled:@"Lucy In The Sky With Diamonds" by:@"The Beatles" at:@"..."]];
     [self.tableView reloadData];
 }
 
@@ -43,7 +42,7 @@
     
     self.songs = [[NSMutableArray alloc] init];
 
-    //[self loadInitialData];
+    [self loadInitialData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -83,17 +82,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    //return [self.songs count];
     if (section == 0) {
-        if ([self.songs count] < 5)
-            return [self.songs count];
-        return 5;
+        //if ([self.songs count] < 5)
+        return [self.songs count];
+        //return 5;
     }
-    return 0;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return 60;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated: NO];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,15 +120,20 @@
         
         
         if (indexPath.section == 0) {
-            [voteCounter setText:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
+            //[voteCounter setText:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
+            //[trackTitle setText:[track title]];
+            //[artistName setText:[track artist]];
+            
+            [voteCounter setText:@"0"];
             [trackTitle setText:[track title]];
             [artistName setText:[track artist]];
+            
             //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
             //cell.detailTextLabel.text = @"Artist Name";
         
         } else {
-            [voteCounter setText:@"1"];
-            [trackTitle setText:@"Random Song"];
+            [voteCounter setText:@"0"];
+            [trackTitle setText:@"Current Song"];
             [artistName setText:@"Artist Name"];
             cell.detailTextLabel.text = @"Artist Name";
         }
