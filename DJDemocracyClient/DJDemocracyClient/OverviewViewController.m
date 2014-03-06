@@ -42,7 +42,6 @@
     
     self.songs = [[NSMutableArray alloc] init];
 
-    [self loadInitialData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -84,9 +83,10 @@
     // Return the number of rows in the section.
     //return [self.songs count];
     if (section == 0) {
-        //if ([self.songs count] < 5)
-        return [self.songs count];
-        //return 5;
+        NSLog(@"%d", self.songs.count);
+        if ([self.songs count] < 5)
+            return [self.songs count];
+        return 5;
     }
     return 1;
 }
@@ -114,7 +114,7 @@
     UILabel *trackTitle = (UILabel*) [cell viewWithTag:2];
     UILabel *artistName = (UILabel*) [cell viewWithTag:3];
     
-    //if ([self.songs count] > 0) {
+    if ([self.songs count] > 0) {
     
         DJTrack *track = [self.songs objectAtIndex:indexPath.row];
         
@@ -137,7 +137,7 @@
             [artistName setText:@"Artist Name"];
             cell.detailTextLabel.text = @"Artist Name";
         }
-    //}
+    }
     
     
     return cell;
