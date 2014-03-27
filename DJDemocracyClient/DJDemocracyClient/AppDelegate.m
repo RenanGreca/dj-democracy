@@ -45,6 +45,8 @@
     //self.window.rootViewController = serverViewController;
     
     serverViewController.server = _server;
+    overviewViewController.server = _server;
+
     
     
     //[window addSubview:[navigationController view]];

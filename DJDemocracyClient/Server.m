@@ -292,9 +292,11 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 - (void)netServiceDidResolveAddress:(NSNetService *)service {
 	assert(service == self.currentlyResolvingService);
     
+    /*#WARNING idek what I'm doing, but, it fixes segfaults.
     [self.currentlyResolvingService stop];
     self.currentlyResolvingService = nil;
-	
+	*/
+    
     [self _remoteServiceResolved:service];
 }
 

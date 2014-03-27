@@ -97,7 +97,32 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSError *error = nil;
+    DJTrack *track = [self.songs objectAtIndex:indexPath.row];
+    NSString* str = @"";
+    
+    [track incVoteCount];
+    //current method for compacting track to message
+    str = [str stringByAppendingString:[track getTitle]];
+    str = [str stringByAppendingString:@";"];
+    str = [str stringByAppendingString:[track getArtist]];
+    str = [str stringByAppendingString:@";"];
+    str = [str stringByAppendingString:[track getLocation]];
+    str = [str stringByAppendingString:@";"];
+    //#warning find out what to do here
+    str = [str stringByAppendingString:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
+    str = [str stringByAppendingString:@";"];
+    
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"sending data %@", data);
+    // where is the server?
+    [self.server sendData:data error:&error];
+    //self.songs = [[NSMutableArray alloc] init];
+    
     [tableView deselectRowAtIndexPath:indexPath animated: NO];
+    
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,7 +149,7 @@
             //[trackTitle setText:[track title]];
             //[artistName setText:[track artist]];
             
-            [voteCounter setText:@"0"];
+            [voteCounter setText:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
             [trackTitle setText:[track title]];
             [artistName setText:[track artist]];
             

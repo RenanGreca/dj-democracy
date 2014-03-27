@@ -260,6 +260,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
 - (DJTrack *)decodeTrack:(NSString *)str; {
     DJTrack *track = nil;
     
+    NSLog(@"Got a thing: change local track accordingly.");
     NSArray *array = [str componentsSeparatedByString:@";"];
     
     track.title = [array objectAtIndex:0];
