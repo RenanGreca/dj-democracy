@@ -218,7 +218,6 @@ NSInteger voteSort(id num1, id num2, void *context) {
 	NSError *error = nil;
 	[self.server sendData:data error:&error];
 	
-    //[self.server s ]
 }
 
 - (void)sendSong:(NSString *)encodedSong;
@@ -336,7 +335,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     while (true) {
         ETTrack *currentTrack = [eyetunes currentTrack];
         if ([[currentTrack location] compare:[previousTrack location]] != NSOrderedSame) {
-            NSLog(@"Swithing track to: %@", [currentTrack name]);
+            NSLog(@"Switching track to: %@", [currentTrack name]);
             [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
             [[self.playlist objectAtIndex:0] setVoteCount:0];
             [self.playlist sortUsingFunction:voteSort context:NULL];

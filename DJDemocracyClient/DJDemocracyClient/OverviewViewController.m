@@ -17,11 +17,12 @@
 @implementation OverviewViewController
 
 - (void)loadInitialData {
-    [self.songs addObject:[DJTrack newTrackCalled:@"Bohemian Rhapsody" by:@"Queen" at:@"..."]];
+    /*[self.songs addObject:[DJTrack newTrackCalled:@"Bohemian Rhapsody" by:@"Queen" at:@"..."]];
     [self.songs addObject:[DJTrack newTrackCalled:@"Let It Be" by:@"The Beatles" at:@"..."]];
     [self.songs addObject:[DJTrack newTrackCalled:@"Smoke on the Water" by:@"Deep Purple" at:@"..."]];
     [self.songs addObject:[DJTrack newTrackCalled:@"Hey Jude" by:@"The Beatles" at:@"..."]];
     [self.songs addObject:[DJTrack newTrackCalled:@"Lucy In The Sky With Diamonds" by:@"The Beatles" at:@"..."]];
+    */
     [self.tableView reloadData];
 }
 
@@ -39,7 +40,7 @@
     NSLog(@"Loading Overview");
     
     [super viewDidLoad];
-    
+    self.canVote = YES;
     self.songs = [[NSMutableArray alloc] init];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -86,9 +87,9 @@
         NSLog(@"%d", self.songs.count);
         if ([self.songs count] < 5)
             return [self.songs count];
-        return 5;
+        return [self.songs count];
     }
-    return 1;
+    return 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -97,6 +98,9 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   /* if (self.canVote == NO) {
+        [tableView deselectRowAtIndexPath:indexPath animated: NO];
+    } else { */
     NSError *error = nil;
     DJTrack *track = [self.songs objectAtIndex:indexPath.row];
     NSString* str = @"";
@@ -117,12 +121,12 @@
     
     NSLog(@"sending data %@", data);
     // where is the server?
-    [self.server sendData:data error:&error];
-    //self.songs = [[NSMutableArray alloc] init];
+    self.songs = [[NSMutableArray alloc] init];
     
     [tableView deselectRowAtIndexPath:indexPath animated: NO];
-    
-    [self.tableView reloadData];
+    [self.server sendData:data error:&error];
+    //[self.songs sortUsingFunction:voteSort context:NULL];
+    //self.canVote = NO; }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,15 +161,33 @@
             //cell.detailTextLabel.text = @"Artist Name";
         
         } else {
+            
             [voteCounter setText:@"0"];
             [trackTitle setText:@"Current Song"];
             [artistName setText:@"Artist Name"];
             cell.detailTextLabel.text = @"Artist Name";
+             
         }
     }
     
     
     return cell;
+}
+
+// Used to sort our playlist in descending order.
+NSInteger voteSort(id num1, id num2, void *context){
+    
+    NSInteger v1 = [num1 getVoteCount];
+    NSInteger v2 = [num2 getVoteCount];
+    
+    // > and < swapped from usual example to descend instead of ascend.
+    if (v1 > v2)
+        return NSOrderedAscending;
+    else if (v1 < v2)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+    
 }
 
 

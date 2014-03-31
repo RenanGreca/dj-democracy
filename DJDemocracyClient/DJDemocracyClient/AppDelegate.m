@@ -77,12 +77,10 @@
     NSLog(@"Server did not start %@", errorDict);
 }
 
-#warning Why isn't this function being called?
+#warning HERE: create triggers on new-list for vote-reset
 - (void)server:(Server *)server didAcceptData:(NSData *)data {
-    NSLog(@"Server did accept data"); // %@", data);
-    NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+     NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if(nil != message || [message length] > 0) {
-        //NSLog(@"%@", message);
         [overviewViewController addSong:message];
     } else {
         NSLog(@"%@", @"no data received");

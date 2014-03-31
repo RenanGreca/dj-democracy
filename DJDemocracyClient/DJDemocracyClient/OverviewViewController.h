@@ -13,9 +13,12 @@
 @interface OverviewViewController : UITableViewController
 
 @property (nonatomic, retain) Server *server;
+@property (readwrite) BOOL canVote;
 
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
-
 - (void) addSong:(NSString *)message;
+
+
+NSInteger voteSort(id num1, id num2, void *context);
 
 @end
