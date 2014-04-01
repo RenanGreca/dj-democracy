@@ -98,42 +98,39 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   /* if (self.canVote == NO) {
+    if (self.canVote == NO) {
         [tableView deselectRowAtIndexPath:indexPath animated: NO];
-    } else { */
-    NSError *error = nil;
-    DJTrack *track = [self.songs objectAtIndex:indexPath.row];
-    NSString* str = @"";
+    } else {
+        NSError *error = nil;
+        DJTrack *track = [self.songs objectAtIndex:indexPath.row];
+        NSString* str = @"";
+        
+        [track incVoteCount];
+        //current method for compacting track to message
+        str = [str stringByAppendingString:[track getTitle]];
+        str = [str stringByAppendingString:@";"];
+        str = [str stringByAppendingString:[track getArtist]];
+        str = [str stringByAppendingString:@";"];
+        str = [str stringByAppendingString:[track getLocation]];
+        str = [str stringByAppendingString:@";"];
+        //#warning find out what to do here
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
+        str = [str stringByAppendingString:@";"];
     
-    [track incVoteCount];
-    //current method for compacting track to message
-    str = [str stringByAppendingString:[track getTitle]];
-    str = [str stringByAppendingString:@";"];
-    str = [str stringByAppendingString:[track getArtist]];
-    str = [str stringByAppendingString:@";"];
-    str = [str stringByAppendingString:[track getLocation]];
-    str = [str stringByAppendingString:@";"];
-    //#warning find out what to do here
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
-    str = [str stringByAppendingString:@";"];
+        NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"sending data %@", data);
+        // where is the server?
+        self.songs = [[NSMutableArray alloc] init];
     
-    NSLog(@"sending data %@", data);
-    // where is the server?
-    self.songs = [[NSMutableArray alloc] init];
-    
-    [tableView deselectRowAtIndexPath:indexPath animated: NO];
-    [self.server sendData:data error:&error];
-    //[self.songs sortUsingFunction:voteSort context:NULL];
-    //self.canVote = NO; }
+        [tableView deselectRowAtIndexPath:indexPath animated: NO];
+        [self.server sendData:data error:&error];
+        self.canVote = NO;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"Filling TableView");
-    
     static NSString *CellIdentifier = @"SongCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -174,21 +171,6 @@
     return cell;
 }
 
-// Used to sort our playlist in descending order.
-NSInteger voteSort(id num1, id num2, void *context){
-    
-    NSInteger v1 = [num1 getVoteCount];
-    NSInteger v2 = [num2 getVoteCount];
-    
-    // > and < swapped from usual example to descend instead of ascend.
-    if (v1 > v2)
-        return NSOrderedAscending;
-    else if (v1 < v2)
-        return NSOrderedDescending;
-    else
-        return NSOrderedSame;
-    
-}
 
 
 /*
@@ -241,6 +223,12 @@ NSInteger voteSort(id num1, id num2, void *context){
 }
 
  */
+
+- (void)setCanVote {
+    self.canVote = TRUE;
+    NSLog(@"%@", @"Enabled Vote");
+    
+}
 
 - (void)dealloc {
     [UITableView release];

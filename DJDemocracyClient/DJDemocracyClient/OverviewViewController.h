@@ -17,8 +17,6 @@
 
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
 - (void) addSong:(NSString *)message;
-
-
-NSInteger voteSort(id num1, id num2, void *context);
+- (void) setCanVote;
 
 @end

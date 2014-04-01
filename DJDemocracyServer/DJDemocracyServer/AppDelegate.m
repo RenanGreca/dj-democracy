@@ -75,15 +75,9 @@
         DJTrack *djTrack = [DJTrack newTrackCalled:[track name] by:[track artist] at:[track getPropertyAsPathForDesc:pETTrackLocation]];
         [self.playlist addObject:djTrack];
     }
-    
     //self.playlists = [self.playlist tracks];
-    
     [songTable reloadData];
-    
     showingSongs = TRUE;
-    
-    
-    
     //NSLog(@"%@", [[self.playlist objectAtIndex:0] title]);
     
     /*for (DJTrack *track in playlist.tracks) {
@@ -97,8 +91,6 @@
     
     
     //self.playlist = [self.playlists objectAtIndex:selectedPlaylist];
-    
-    
     
     //self.playlists = [playlist tracks];
     
@@ -145,9 +137,9 @@
     
     #pragma warning We have to think of how were going to display the songs
     [self showSongs:self.playlist];
-
-    [self sendSong:message];
     
+    [self sendSong:message];
+    NSLog(@"%@", @"I should not be here.");
     //[eyetunes playTrack:track];
 }
 
@@ -233,8 +225,6 @@ NSInteger voteSort(id num1, id num2, void *context) {
     //ETPlaylist *library = [eyetunes libraryPlaylist];
     NSError *error = nil;
     
-    NSLog(@"I am heeeere!");
-    
     //NSUInteger i = 0;
     for (DJTrack *track in self.playlist) {
         //DJTrack *djTrack = [DJTrack newFromTrack:track];
@@ -248,11 +238,23 @@ NSInteger voteSort(id num1, id num2, void *context) {
         //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
         [NSThread sleepForTimeInterval:0.01f];
         
-        NSLog(@"Sending song %@", track.title);
+        //NSLog(@"Sending song %@", track.title);
         
         [self.server sendData:data error:&error];
     }
-    
+}
+
+- (IBAction)sendSongsAgain:(id)sender; {
+    NSError *error = nil;
+    NSData *data = nil;
+    for (DJTrack *track in self.playlist) {
+        data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
+        [NSThread sleepForTimeInterval:0.01f];
+        [self.server sendData:data error:&error];
+    }
+    [NSThread sleepForTimeInterval:0.01f];
+    data = [@"Done" dataUsingEncoding:NSUTF8StringEncoding];
+    [self.server sendData:data error:&error];
 }
 
 // Decodes a string into an DJTrack object we can use
@@ -338,7 +340,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
             NSLog(@"Switching track to: %@", [currentTrack name]);
             [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
             [[self.playlist objectAtIndex:0] setVoteCount:0];
-            [self.playlist sortUsingFunction:voteSort context:NULL];
+            //[self.playlist sortUsingFunction:voteSort context:NULL];
             previousTrack = currentTrack;
         }
         [NSThread sleepForTimeInterval:0.05f];
@@ -385,7 +387,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     if(nil != message || [message length] > 0) {
         self.message = message;
         [self increaseVoteCount:message];
-        [self sendSongs:nil];
+        [self sendSongsAgain:nil];
         //NSLog(message);
     } else {
         self.message = @"no data received";

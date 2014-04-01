@@ -80,10 +80,14 @@
 #warning HERE: create triggers on new-list for vote-reset
 - (void)server:(Server *)server didAcceptData:(NSData *)data {
      NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    if(nil != message || [message length] > 0) {
-        [overviewViewController addSong:message];
+    if (message == nil || [message length] == 0) {
+        NSLog(@"%@", @"no data recieved");
+    }
+    NSLog(@"%@", message);
+    if ([message isEqualToString:@"Done"]){
+        [overviewViewController setCanVote];
     } else {
-        NSLog(@"%@", @"no data received");
+        [overviewViewController addSong:message];
     }
 }
 
