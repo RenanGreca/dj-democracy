@@ -106,7 +106,7 @@
         NSString* str = @"";
         
         [track incVoteCount];
-        //current method for compacting track to message
+        /*current method for compacting track to message
         str = [str stringByAppendingString:[track getTitle]];
         str = [str stringByAppendingString:@";"];
         str = [str stringByAppendingString:[track getArtist]];
@@ -115,8 +115,10 @@
         str = [str stringByAppendingString:@";"];
         //#warning find out what to do here
         str = [str stringByAppendingString:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
-        str = [str stringByAppendingString:@";"];
+        str = [str stringByAppendingString:@";"]; */
     
+        str = [track encodeTrack];
+        
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     
         NSLog(@"sending data %@", data);

@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-// forward declaration so protpcol and be at the top of the file
+// forward declaration so protocol and be at the top of the file
 @class Server;
 @class ServerBrowser;
 

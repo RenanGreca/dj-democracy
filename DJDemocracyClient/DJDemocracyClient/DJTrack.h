@@ -17,6 +17,8 @@
 
 + (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
 
++ (id) decodeTrack:(NSString *)str;
+
 - (NSInteger) getVoteCount;
 
 - (void) setVoteCount:(NSInteger)voteCount;
@@ -29,4 +31,5 @@
 
 - (NSString *) getLocation;
 
+- (NSString *) encodeTrack;
 @end

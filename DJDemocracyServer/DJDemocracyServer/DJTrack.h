@@ -17,17 +17,14 @@
 @property  NSInteger voteCount;
 
 + (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
++ (id) decodeTrack:(NSString *)message;
 
 - (NSInteger) getVoteCount;
-
 - (void) setVoteCount:(NSInteger)voteCount;
-
 - (void) incVoteCount;
-
 - (NSString *) getTitle;
-
 - (NSString *) getArtist;
-
 - (NSString *) getLocation;
+- (NSString *) encodeTrack;
 
 @end

@@ -120,10 +120,7 @@
     
     //NSLog(message);
     
-    NSArray *array = [message componentsSeparatedByString:@";"];
-    
-    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
-    [track setVoteCount:[[array objectAtIndex:3] intValue]];
+    DJTrack *track = [DJTrack decodeTrack:message];
     
     //[voteCount objectAtIndex:(NSUInteger)[track objectAtIndex:3]];
     
@@ -139,17 +136,12 @@
     [self showSongs:self.playlist];
     
     [self sendSong:message];
-    NSLog(@"%@", @"I should not be here.");
     //[eyetunes playTrack:track];
 }
 
 // Find the received track in the playlist and increment its vote count. There might be a better way of doing this?
 - (void)increaseVoteCount:(NSString *)message {
-    NSArray *array = [message componentsSeparatedByString:@";"];
-    
-    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
-    [track setVoteCount:[[array objectAtIndex:3] intValue]];
-    
+    DJTrack *track = [DJTrack decodeTrack:message];
     
     NSInteger i = 0;
     for (i=0; i<[self.playlist count]; i++) {
@@ -229,7 +221,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     for (DJTrack *track in self.playlist) {
         //DJTrack *djTrack = [DJTrack newFromTrack:track];
         //NSLog(@"2. %ld", (long)djTrack.voteCount);
-        NSData *data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
         
         
         //[encoder encodeObject:self->inoutTrack forKey:@"track"];
@@ -248,7 +240,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     NSError *error = nil;
     NSData *data = nil;
     for (DJTrack *track in self.playlist) {
-        data = [[self encodeTrack:track] dataUsingEncoding:NSUTF8StringEncoding];
+        data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
         [NSThread sleepForTimeInterval:0.01f];
         [self.server sendData:data error:&error];
     }
@@ -257,22 +249,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     [self.server sendData:data error:&error];
 }
 
-// Decodes a string into an DJTrack object we can use
-- (DJTrack *)decodeTrack:(NSString *)str; {
-    DJTrack *track = nil;
-    
-    NSLog(@"Got a thing: change local track accordingly.");
-    NSArray *array = [str componentsSeparatedByString:@";"];
-    
-    track.title = [array objectAtIndex:0];
-    track.artist = [array objectAtIndex:1];
-    //track.location =
-    //track.index = [array objectAtIndex:3];
-    
-    return track;
-    
-}
-
+/*
 // Encodes track title, artist and location into a string so we can send it to the client
 - (NSString *)encodeTrack:(DJTrack *)track; {
     NSLog(@"%ld", (long)[track getVoteCount]);
@@ -302,7 +279,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     
     return str;
 }
-
+*/
 
 - (IBAction)startServer:(id)sender; {
     if (selectedPlaylist == -1) {
