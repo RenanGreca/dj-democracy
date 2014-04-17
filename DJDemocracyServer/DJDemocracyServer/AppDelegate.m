@@ -212,6 +212,8 @@ NSInteger voteSort(id num1, id num2, void *context) {
 }
 
 - (IBAction)sendSongs:(id)sender; {
+    NSLog(@"Sending songs...");
+    
     //EyeTunes *eyetunes = [EyeTunes sharedInstance];
     
     //ETPlaylist *library = [eyetunes libraryPlaylist];
@@ -339,7 +341,10 @@ NSInteger voteSort(id num1, id num2, void *context) {
 	connectedRow = selectedRow;
 	[deviceTable reloadData];
     
-    //[self sendSongs:connectedRow];
+    
+    [NSThread sleepForTimeInterval:1];
+
+    [self sendSongs:self];
 }
 
 - (void)serverStopped:(Server *)server
