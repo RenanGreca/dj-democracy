@@ -42,7 +42,7 @@
     [super viewDidLoad];
     self.canVote = YES;
     self.songs = [[NSMutableArray alloc] init];
-
+    self.showAll = FALSE;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -51,10 +51,8 @@
 }
 
 - (void) addSong:(NSString *)message {
-    NSArray *array = [message componentsSeparatedByString:@";" ];
-    DJTrack *track = [DJTrack newTrackCalled:[array objectAtIndex:0] by:[array objectAtIndex:1] at:[array objectAtIndex:2]];
-    [track setVoteCount:[[array objectAtIndex:3] intValue]];
-    NSLog(@"Adding song %@", [track title]);
+    DJTrack *track = [DJTrack decodeTrack:message];
+    NSLog(@"Adding song %@", [track getTitle]);
     
     [self.songs addObject:track];
     //NSLog(@"Count of songs: %d", self.songs.count);
@@ -76,20 +74,22 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //return [self.songs count];
-    if (section == 0) {
-        NSLog(@"%d", self.songs.count);
+ /*   if (section == 0) {
         if ([self.songs count] < 5)
             return [self.songs count];
         return [self.songs count];
-    }
-    return 0;
+    } */
+    if (self.showAll == TRUE) {
+        return [self.songs count];
+    }else {
+        return MIN([self.songs count], 5); //magic number
+        };
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -159,14 +159,14 @@
             //cell.textLabel.text = [self.songs objectAtIndex:indexPath.row];
             //cell.detailTextLabel.text = @"Artist Name";
         
-        } else {
+        } /*else {
             
             [voteCounter setText:@"0"];
             [trackTitle setText:@"Current Song"];
             [artistName setText:@"Artist Name"];
             cell.detailTextLabel.text = @"Artist Name";
              
-        }
+        } */
     }
     
     
@@ -218,17 +218,19 @@
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-
- */
+} */
 
 - (void)setCanVote {
     self.canVote = TRUE;
-    NSLog(@"%@", @"Enabled Vote");
+}
+
+- (IBAction)showAllSongs:(id)sender {
+    self.showAll = TRUE;
+    [self.tableView reloadData];
     
 }
 

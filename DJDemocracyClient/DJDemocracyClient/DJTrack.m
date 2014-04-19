@@ -9,7 +9,7 @@
 #import "DJTrack.h"
 
 @implementation DJTrack
-
+/*
 + (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location
 {
     DJTrack *track =  [[self alloc] init];
@@ -18,7 +18,7 @@
     track.location = [NSString stringWithString:location];
     track.voteCount = 0;
     return track;
-}
+}*/
 
 + (id) decodeTrack:(NSString *)str {
     DJTrack *track =  [[self alloc] init];
@@ -28,7 +28,9 @@
     track.title = [array objectAtIndex:0];
     track.artist = [array objectAtIndex:1];
     track.location = [array objectAtIndex:2];
-    track.voteCount = [[array objectAtIndex:3] intValue];
+    if (array.count > 3) {
+        track.voteCount = [[array objectAtIndex:3] intValue];
+    } else track.voteCount = 0;
     return track;
     
 }

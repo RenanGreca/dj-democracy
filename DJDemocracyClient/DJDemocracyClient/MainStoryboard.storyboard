@@ -41,8 +41,8 @@
         <!--Song View Controller - Songs-->
         <scene sceneID="45B-3t-DdC">
             <objects>
-                <tableViewController id="GF9-G0-PbC" customClass="SongViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3BO-dI-Nly">
+                <tableViewController storyboardIdentifier="SongView" id="GF9-G0-PbC" customClass="SongViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3BO-dI-Nly" propertyAccessControl="none">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94602403010281744" green="0.9269509347994086" blue="0.97714046556122447" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,7 +84,7 @@
                             <outlet property="delegate" destination="GF9-G0-PbC" id="EgH-Nk-Aze"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Songs" id="en0-5s-27W">
+                    <navigationItem key="navigationItem" title="Songs" id="en0-5s-27W" propertyAccessControl="none">
                         <barButtonItem key="leftBarButtonItem" title="Overview" id="Eq3-TS-Mxi">
                             <connections>
                                 <segue destination="1Df-dU-NzZ" kind="unwind" unwindAction="unwindToOverview:" id="AEx-iK-348"/>
@@ -92,7 +92,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="heq-qN-AZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="heq-qN-AZ6" userLabel="First Responder" propertyAccessControl="all" sceneMemberID="firstResponder"/>
                 <exit id="1Df-dU-NzZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2552" y="-187"/>
@@ -182,7 +182,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5v8-5d-bZY" kind="modal" id="gH0-Ys-YP8"/>
+                                    <action selector="showAllSongs:" destination="bJQ-Fy-bkQ" eventType="touchDown" id="S4E-VT-Lo7"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -194,7 +194,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ss-Pr-Ihm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5Jw-op-ufy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1556" y="-187"/>
+            <point key="canvasLocation" x="1562" y="-187"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AGS-9P-iG0">

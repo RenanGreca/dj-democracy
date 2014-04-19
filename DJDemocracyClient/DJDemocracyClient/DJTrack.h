@@ -15,9 +15,11 @@
 @property (readwrite, copy) NSString *location;
 @property  NSInteger voteCount;
 
-+ (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
+//+ (id) newTrackCalled:(NSString *)title by:(NSString *)artist at:(NSString *)location;
 
 + (id) decodeTrack:(NSString *)str;
+
+- (NSString *) encodeTrack;
 
 - (NSInteger) getVoteCount;
 
@@ -31,5 +33,4 @@
 
 - (NSString *) getLocation;
 
-- (NSString *) encodeTrack;
 @end

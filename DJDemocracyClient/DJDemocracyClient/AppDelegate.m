@@ -32,7 +32,6 @@
         
     serverViewController = [[[self.window rootViewController] childViewControllers] objectAtIndex:0];
     overviewViewController = (OverviewViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"OverviewView"];
-
     
     navController = [[self.window rootViewController] navigationController];
     
@@ -41,13 +40,10 @@
     //serverViewController.server = _server;
     //serverViewController.navigationController = navController;
     
-    
     //self.window.rootViewController = serverViewController;
     
     serverViewController.server = _server;
     overviewViewController.server = _server;
-
-    
     
     //[window addSubview:[navigationController view]];
     //[window makeKeyAndVisible];
@@ -65,7 +61,6 @@
     // this is called when the remote side finishes joining with the socket as
     // notification that the other side has made its connection with this side
     serverViewController.server = server;
-    //[self.navigationController pushViewController:songViewController animated:YES];
 }
 
 - (void)serverStopped:(Server *)server {

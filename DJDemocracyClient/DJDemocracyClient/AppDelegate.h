@@ -22,6 +22,7 @@
     UIStoryboard *mainStoryboard;
     ServerViewController *serverViewController;
     OverviewViewController *overviewViewController;
+    SongViewController *songViewController;
     UINavigationController *navController;
     //UIWindow *window;
     //UINavigationController *navigationController;

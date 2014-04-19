@@ -14,9 +14,10 @@
 
 @property (nonatomic, retain) Server *server;
 @property (readwrite) BOOL canVote;
+@property (readwrite) BOOL showAll;
 
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
+- (IBAction)showAllSongs:(id)sender;
 - (void) addSong:(NSString *)message;
 - (void) setCanVote;
-
 @end
