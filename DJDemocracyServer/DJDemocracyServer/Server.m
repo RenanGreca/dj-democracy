@@ -380,7 +380,8 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     
     if(YES == self.inputStreamReady && YES == self.outputStreamReady) {
         [self.delegate serverRemoteConnectionComplete:self];
-        //#WARNING the answer is here i guess
+        //#WARNING if anything is breaking, its because of this line
+        // (pretty much, test this immediately. [need multiuser interactivity])
         //[self _stopNetService];
     }
 }
