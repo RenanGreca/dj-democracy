@@ -115,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="-29" y="-187"/>
         </scene>
-        <!--Overview View Controller - Overview-->
+        <!--Overview View Controller - DJ Democracy-->
         <scene sceneID="asc-kx-Gnk">
             <objects>
                 <tableViewController storyboardIdentifier="OverviewView" id="bJQ-Fy-bkQ" customClass="OverviewViewController" sceneMemberID="viewController">
@@ -167,14 +167,14 @@
                             <outlet property="delegate" destination="bJQ-Fy-bkQ" id="j8d-mg-eXF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Overview" id="Yzg-B6-hcI">
+                    <navigationItem key="navigationItem" title="DJ Democracy" id="Yzg-B6-hcI">
                         <barButtonItem key="leftBarButtonItem" title="Servers" id="rp4-A4-ws6">
                             <connections>
                                 <segue destination="5Jw-op-ufy" kind="unwind" unwindAction="unwindToServers:" id="FGD-Uq-WC4"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="qGt-ZB-BtD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xA3-bi-px0">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xA3-bi-px0">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>

@@ -88,6 +88,7 @@
     if (self.showAll == TRUE) {
         return [self.songs count];
     }else {
+        
         return MIN([self.songs count], 5); //magic number
         };
 }
@@ -229,9 +230,20 @@
 }
 
 - (IBAction)showAllSongs:(id)sender {
-    self.showAll = TRUE;
-    [self.tableView reloadData];
+    UIButton *button = (UIButton*)sender;
     
+    if (self.showAll == FALSE){
+        [button setTitle:@"Top 5" forState:UIControlStateNormal];
+        self.showAll = TRUE;
+        self.tableTitle.text = @"All Songs";
+        [self.tableView reloadData];
+        
+    }else {
+        [button setTitle:@"All Songs" forState:UIControlStateNormal];
+        self.showAll = FALSE;
+        self.tableTitle.text = @"Top 5 Songs";
+        [self.tableView reloadData];
+    }
 }
 
 - (void)dealloc {

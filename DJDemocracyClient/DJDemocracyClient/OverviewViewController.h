@@ -13,6 +13,8 @@
 @interface OverviewViewController : UITableViewController
 
 @property (nonatomic, retain) Server *server;
+@property (nonatomic, retain) IBOutlet UILabel *tableTitle;
+
 @property (readwrite) BOOL canVote;
 @property (readwrite) BOOL showAll;
 
