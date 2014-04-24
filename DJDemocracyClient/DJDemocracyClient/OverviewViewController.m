@@ -123,7 +123,6 @@
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     
         NSLog(@"sending data %@", data);
-        // where is the server?
         self.songs = [[NSMutableArray alloc] init];
     
         [tableView deselectRowAtIndexPath:indexPath animated: NO];

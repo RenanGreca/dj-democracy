@@ -319,7 +319,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
             NSLog(@"Switching track to: %@", [currentTrack name]);
             [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
             [[self.playlist objectAtIndex:0] setVoteCount:0];
-            //[self.playlist sortUsingFunction:voteSort context:NULL];
+            [self.playlist sortUsingFunction:voteSort context:NULL];
             previousTrack = currentTrack;
         }
         [NSThread sleepForTimeInterval:0.05f];

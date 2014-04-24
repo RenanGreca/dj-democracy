@@ -209,10 +209,11 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 // if you don't care about the error you can pass NULL
 - (BOOL)sendData:(NSData *)data error:(NSError **)error {
     BOOL successful = NO;
+    Client* client;
     for (int i = 0; i < [self.clientList count]; i++){
-        Client* client = [self.clientList objectAtIndex:i];
+        client = [self.clientList objectAtIndex:i];
         
-        if(self.outputStreamHasSpace) {
+        //if(self.outputStreamHasSpace) {
             // push the whole gob of data onto the output stream
             // TODO: check to see if data is longer than the payloadSize
             // and break it up if so
@@ -232,11 +233,11 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
             } else {
                 successful = YES;
             }
-        } else {
+        /*} else {
             *error = [[NSError alloc] initWithDomain:ServerErrorDomain
                                             code:kServerNoSpaceOnOutputStream
                                             userInfo:nil];
-        }
+        }*/
     }
     return successful;
 }
@@ -463,10 +464,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
                                  forMode:NSDefaultRunLoopMode];
     [client.outputStream open];
     
-    NSLog(@"Before: %lu \n", (unsigned long)[self.clientList count]);
     [self.clientList addObject:client];
-    
-    NSLog(@"After: %lu \n", (unsigned long)[self.clientList count]);
 }
 
 - (void)_searchForServicesOfType:(NSString *)type {
