@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FD66D4519071D7E003ED940 /* dj-democracy-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FD66D4419071D7E003ED940 /* dj-democracy-logo.png */; };
 		A780CFAC18BC0E8A00F69FDE /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A780CFAB18BC0E8A00F69FDE /* OverviewViewController.m */; };
 		A7821A5218B8972300D19E93 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7821A5118B8972300D19E93 /* MainStoryboard.storyboard */; };
 		A784333418C4437D004D322C /* DJTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = A784333318C4437D004D322C /* DJTrack.m */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1FD66D4419071D7E003ED940 /* dj-democracy-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dj-democracy-logo.png"; sourceTree = "<group>"; };
 		A780CFAA18BC0E8A00F69FDE /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
 		A780CFAB18BC0E8A00F69FDE /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
 		A7821A5118B8972300D19E93 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		C8A0EA94185290AB006C1EB2 = {
 			isa = PBXGroup;
 			children = (
+				1FD66D4419071D7E003ED940 /* dj-democracy-logo.png */,
 				C8594D951861472300E7644D /* Default-568h@2x.png */,
 				C856BCAE185A650800E956A8 /* Server */,
 				C8A0EAA9185290AB006C1EB2 /* DJDemocracyClient */,
@@ -191,6 +194,7 @@
 				A7821A5218B8972300D19E93 /* MainStoryboard.storyboard in Resources */,
 				C8A0EAAE185290AC006C1EB2 /* InfoPlist.strings in Resources */,
 				C8594D961861472300E7644D /* Default-568h@2x.png in Resources */,
+				1FD66D4519071D7E003ED940 /* dj-democracy-logo.png in Resources */,
 				C8A69D581861661C00954BFD /* ServerView.xib in Resources */,
 				C8A69D5A18616FDC00954BFD /* MainWindow.xib in Resources */,
 				C8A340A31861785100413DF5 /* SongView.xib in Resources */,
