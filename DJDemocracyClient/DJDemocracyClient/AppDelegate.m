@@ -78,12 +78,13 @@
     if (message == nil || [message length] == 0) {
         NSLog(@"%@", @"no data recieved");
     }
+    else {
     NSLog(@"%@", message);
     if ([message isEqualToString:@"Done"]){
         [overviewViewController setCanVote];
     } else {
         [overviewViewController addSong:message];
-    }
+    } }
 }
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict {
