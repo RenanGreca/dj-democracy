@@ -38,8 +38,10 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 @property(nonatomic, retain) NSNetServiceBrowser *browser;
 @property(nonatomic, retain) NSNetService *localService;
 @property(nonatomic, retain) NSNetService *currentlyResolvingService;
-
+@property(nonatomic, retain) NSMutableArray *clientList;
 @end
+
+
 
 @interface Server(Private)
 
@@ -77,6 +79,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 @synthesize browser = _browser;
 @synthesize localService = _localService;
 @synthesize currentlyResolvingService = _currentlyResolvingService;
+@synthesize clientList = _clientList;
 
 // defaults to protocol named 'Server' and using TCP
 - (id)init {
@@ -86,6 +89,7 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
                         protocol:@"_Server._tcp."
                             name:@""];
     }
+    self.clientList = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -97,6 +101,8 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
                         protocol:[NSString stringWithFormat:@"_%@._tcp.", protocol]
                             name:@""];
     }
+    
+    self.clientList = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -203,30 +209,34 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 // if you don't care about the error you can pass NULL
 - (BOOL)sendData:(NSData *)data error:(NSError **)error {
     BOOL successful = NO;
-    if(self.outputStreamHasSpace) {
-        // push the whole gob of data onto the output stream
-        // TODO: check to see if data is longer than the payloadSize
-        // and break it up if so
-        NSInteger len = [self.outputStream write:[data bytes] maxLength:[data length]];
-        if(-1 == len) {
-            // error occured
-            *error = [[NSError alloc] 
-                      initWithDomain:ServerErrorDomain
-                      code:kServerNoSpaceOnOutputStream
-                      userInfo:[[self.outputStream streamError] userInfo]];
-        } else if(0 == len) {
-            // stream has reached capacity
-            *error = [[NSError alloc] 
-                      initWithDomain:ServerErrorDomain
-                      code:kServerOutputStreamReachedCapacity
-                      userInfo:[[self.outputStream streamError] userInfo]];
+    for (int i = 0; i < [self.clientList count]; i++){
+        Client* client = [self.clientList objectAtIndex:i];
+        
+        if(self.outputStreamHasSpace) {
+            // push the whole gob of data onto the output stream
+            // TODO: check to see if data is longer than the payloadSize
+            // and break it up if so
+            NSInteger len = [client.outputStream write:[data bytes] maxLength:[data length]];
+            if(-1 == len) {
+                // error occured
+                *error = [[NSError alloc]
+                          initWithDomain:ServerErrorDomain
+                          code:kServerNoSpaceOnOutputStream
+                          userInfo:[[client.outputStream streamError] userInfo]];
+            } else if(0 == len) {
+                // stream has reached capacity
+                *error = [[NSError alloc]
+                          initWithDomain:ServerErrorDomain
+                          code:kServerOutputStreamReachedCapacity
+                          userInfo:[[client.outputStream streamError] userInfo]];
+            } else {
+                successful = YES;
+            }
         } else {
-            successful = YES;
-        }
-    } else {
-        *error = [[NSError alloc] initWithDomain:ServerErrorDomain
+            *error = [[NSError alloc] initWithDomain:ServerErrorDomain
                                             code:kServerNoSpaceOnOutputStream
-                                        userInfo:nil];
+                                            userInfo:nil];
+        }
     }
     return successful;
 }
@@ -371,11 +381,15 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 @implementation Server(Private)
 
 - (void)_streamCompletedOpening:(NSStream *)stream {
-    if(stream == self.inputStream) {
-        self.inputStreamReady = YES;
-    }
-    if(stream == self.outputStream) {
-        self.outputStreamReady = YES;
+    for (int i = 0; i < [self.clientList count]; i++){
+        if (stream == ((Client*) [self.clientList objectAtIndex:i]).inputStream) {
+            self.inputStreamReady = YES;
+            break;
+        }
+        if (stream == ((Client*) [self.clientList objectAtIndex:i]).outputStream) {
+            self.outputStreamReady = YES;
+            break;
+        }
     }
     
     if(YES == self.inputStreamReady && YES == self.outputStreamReady) {
@@ -391,7 +405,8 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
     uint8_t *buf = calloc(self.payloadSize, sizeof(uint8_t));
     NSUInteger len = 0;
     while([(NSInputStream*)stream hasBytesAvailable]) {
-        len = [self.inputStream read:buf maxLength:self.payloadSize];
+        //len = [self.inputStream read:buf maxLength:self.payloadSize];
+        len = [(NSInputStream*)stream read:buf maxLength:self.payloadSize];
         if(len > 0) {
             [data appendBytes:buf length:len];
         }
@@ -420,11 +435,9 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 - (void)_remoteServiceResolved:(NSNetService *)remoteService {
     NSInputStream *inputStream = nil;
     NSOutputStream *outputStream = nil;
-    
 	if([remoteService getInputStream:&inputStream outputStream:&outputStream]) {
         [self _connectedToInputStream:inputStream outputStream:outputStream];
     }
-    
     [inputStream release];
     inputStream = nil;
     [outputStream release];
@@ -434,19 +447,26 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 - (void)_connectedToInputStream:(NSInputStream *)inputStream
                   outputStream:(NSOutputStream *)outputStream {
     // need to close existing streams
-    [self _stopStreams];
+    //[self _stopStreams];
     
-    self.inputStream = inputStream;
-    self.inputStream.delegate = self;
-    [self.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
+    Client* client = [ [Client alloc] initwithInput: inputStream andOutput: outputStream];
+    
+    client.inputStream = inputStream;
+    client.inputStream.delegate = self;
+    [client.inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                 forMode:NSDefaultRunLoopMode];
-    [self.inputStream open];
+    [client.inputStream open];
     
-    self.outputStream = outputStream;
-    self.outputStream.delegate = self;
-    [self.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
+    client.outputStream = outputStream;
+    client.outputStream.delegate = self;
+    [client.outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                  forMode:NSDefaultRunLoopMode];
-    [self.outputStream open];
+    [client.outputStream open];
+    
+    NSLog(@"Before: %lu \n", (unsigned long)[self.clientList count]);
+    [self.clientList addObject:client];
+    
+    NSLog(@"After: %lu \n", (unsigned long)[self.clientList count]);
 }
 
 - (void)_searchForServicesOfType:(NSString *)type {
@@ -476,20 +496,23 @@ static void SocketAcceptedConnectionCallBack(CFSocketRef socket,
 }
 
 - (void)_stopStreams {
-    if(nil != self.inputStream) {
-        [self.inputStream close];
-        [self.inputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+    //There may be issues with presuming both types of stream exist per client.
+    //Also, we might have to revisit when we put in the run loop: are the objects the same?
+    while ( [self.clientList count] != 0) {
+        Client* client = [self.clientList objectAtIndex:0];
+        [client.inputStream close];
+        [client.inputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
                                     forMode:NSRunLoopCommonModes];
-        self.inputStream = nil;
-        self.inputStreamReady = NO;
-    }
-    if(nil != self.outputStream) {
-        [self.outputStream close];
-        [self.outputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+        client.inputStream = nil;
+        
+        [client.outputStream close];
+        [client.outputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
                                      forMode:NSRunLoopCommonModes];
-        self.outputStream = nil;
-        self.outputStreamReady = NO;
+        client.outputStream = nil;
+        [self.clientList removeObjectAtIndex:0];
     }
+    self.inputStreamReady = NO;
+    self.outputStreamReady = NO;
 }
 
 - (void)_stopNetService {

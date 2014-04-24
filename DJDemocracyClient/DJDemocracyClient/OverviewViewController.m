@@ -128,7 +128,7 @@
     
         [tableView deselectRowAtIndexPath:indexPath animated: NO];
         [self.server sendData:data error:&error];
-        self.canVote = NO;
+        //self.canVote = NO;
     }
 }
 

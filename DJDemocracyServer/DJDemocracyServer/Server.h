@@ -9,10 +9,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Client.h"
 
 // forward declaration so protpcol and be at the top of the file
 @class Server;
 @class ServerBrowser;
+@class Client;
 
 @protocol ServerDelegate <NSObject>
 
@@ -84,3 +86,4 @@ typedef enum {
 @property(nonatomic, assign) uint8_t payloadSize; // how big of a buffer to send on
 
 @end
+

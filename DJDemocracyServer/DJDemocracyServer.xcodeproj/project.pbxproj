@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1FB65BF418AAF0230028E704 /* DJTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB65BF318AAF0230028E704 /* DJTrack.m */; };
 		1FCE60341852928A00FF7553 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCE60331852928A00FF7553 /* Server.m */; };
+		3E2F46C61908B4270080167C /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F46C51908B4270080167C /* Client.m */; };
 		AAB2B3DF185288E100E4C2CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB2B3DE185288E100E4C2CD /* Cocoa.framework */; };
 		AAB2B3E9185288E100E4C2CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB2B3E7185288E100E4C2CD /* InfoPlist.strings */; };
 		AAB2B3EB185288E100E4C2CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B3EA185288E100E4C2CD /* main.m */; };
@@ -37,6 +38,8 @@
 		1FB65BF318AAF0230028E704 /* DJTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJTrack.m; sourceTree = "<group>"; };
 		1FCE60321852928A00FF7553 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		1FCE60331852928A00FF7553 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		3E2F46C41908B4270080167C /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		3E2F46C51908B4270080167C /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		AAB2B3DA185288E100E4C2CD /* DJDemocracyServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDemocracyServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB2B3DE185288E100E4C2CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AAB2B3E1185288E100E4C2CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,8 @@
 			children = (
 				1FCE60321852928A00FF7553 /* Server.h */,
 				1FCE60331852928A00FF7553 /* Server.m */,
+				3E2F46C41908B4270080167C /* Client.h */,
+				3E2F46C51908B4270080167C /* Client.m */,
 				AAB2B3F0185288E100E4C2CD /* AppDelegate.h */,
 				AAB2B3F1185288E100E4C2CD /* AppDelegate.m */,
 				AAB2B3F3185288E200E4C2CD /* MainMenu.xib */,
@@ -198,6 +203,7 @@
 				1FCE60341852928A00FF7553 /* Server.m in Sources */,
 				AAB2B3F2185288E100E4C2CD /* AppDelegate.m in Sources */,
 				1FB65BF418AAF0230028E704 /* DJTrack.m in Sources */,
+				3E2F46C61908B4270080167C /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

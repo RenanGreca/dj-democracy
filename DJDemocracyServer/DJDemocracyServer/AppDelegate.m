@@ -247,8 +247,8 @@ NSInteger voteSort(id num1, id num2, void *context) {
         [self.server sendData:data error:&error];
     }
     [NSThread sleepForTimeInterval:0.01f];
-    data = [@"Done" dataUsingEncoding:NSUTF8StringEncoding];
-    [self.server sendData:data error:&error];
+    //data = [@"Done" dataUsingEncoding:NSUTF8StringEncoding];
+    //[self.server sendData:data error:&error];
 }
 
 /*
