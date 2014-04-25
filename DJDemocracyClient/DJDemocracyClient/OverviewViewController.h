@@ -21,5 +21,6 @@
 - (IBAction)unwindToOverview:(UIStoryboardSegue *)segue;
 - (IBAction)showAllSongs:(id)sender;
 - (void) addSong:(NSString *)message;
+- (void) flushList;
 - (void) setCanVote;
 @end

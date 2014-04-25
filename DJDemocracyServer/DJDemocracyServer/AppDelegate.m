@@ -226,6 +226,23 @@ NSInteger voteSort(id num1, id num2, void *context) {
     [self.server sendData:data error:&error];
 }
 
+- (IBAction)sendSongsUnsolicited:(id)sender; {
+    NSError *error = nil;
+    NSData *data;
+    
+    data = [@"FlushList" dataUsingEncoding:NSUTF8StringEncoding];
+    [self.server sendData:data error:&error];
+    [NSThread sleepForTimeInterval:0.01f];
+    
+    for (DJTrack *track in self.playlist) {
+        data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
+        [NSThread sleepForTimeInterval:0.01f];
+        [self.server sendData:data error:&error];
+    }
+    [NSThread sleepForTimeInterval:0.01f];
+    data = [@"EnableVote" dataUsingEncoding:NSUTF8StringEncoding];
+    [self.server sendData:data error:&error];
+}
 
 - (IBAction)startServer:(id)sender; {
     if (selectedPlaylist == -1) {
@@ -260,11 +277,14 @@ NSInteger voteSort(id num1, id num2, void *context) {
     while (true) {
         ETTrack *currentTrack = [eyetunes currentTrack];
         if ([[currentTrack location] compare:[previousTrack location]] != NSOrderedSame) {
-            NSLog(@"Switching track to: %@", [currentTrack name]);
+            NSLog(@"Switching track to: %@", [[self.playlist objectAtIndex:0] getTitle]);
             [eyetunes playTrackWithPath:[[self.playlist objectAtIndex:0] getLocation]];
             [[self.playlist objectAtIndex:0] setVoteCount:0];
+            previousTrack = [eyetunes currentTrack];
+            
             [self.playlist sortUsingFunction:voteSort context:NULL];
-            previousTrack = currentTrack;
+            [songTable reloadData];
+            [self sendSongsUnsolicited:self];
         }
         [NSThread sleepForTimeInterval:0.05f];
     }

@@ -81,6 +81,8 @@
         NSLog(@"%@", message);
         if ([message isEqualToString:@"EnableVote"]){
             [overviewViewController setCanVote];
+        } else if ([message isEqualToString:@"FlushList"]){
+            [overviewViewController flushList];
         } else {
             [overviewViewController addSong:message];
         }

@@ -96,7 +96,7 @@
         [track incVoteCount];
         NSData *data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
     
-        [self.songs removeAllObjects];
+        [self flushList];
     
         [tableView deselectRowAtIndexPath:indexPath animated: NO];
         [self.server sendData:data error:&error];
@@ -199,6 +199,11 @@
 
 - (void)setCanVote {
     self.canVote = TRUE;
+}
+
+- (void)flushList {
+    [self.songs removeAllObjects];
+
 }
 
 - (IBAction)showAllSongs:(id)sender {
