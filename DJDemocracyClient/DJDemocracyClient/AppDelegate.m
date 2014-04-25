@@ -72,19 +72,19 @@
     NSLog(@"Server did not start %@", errorDict);
 }
 
-#warning HERE: create triggers on new-list for vote-reset
 - (void)server:(Server *)server didAcceptData:(NSData *)data {
      NSString *message = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (message == nil || [message length] == 0) {
         NSLog(@"%@", @"no data recieved");
     }
     else {
-    NSLog(@"%@", message);
-    if ([message isEqualToString:@"Done"]){
-        [overviewViewController setCanVote];
-    } else {
-        [overviewViewController addSong:message];
-    } }
+        NSLog(@"%@", message);
+        if ([message isEqualToString:@"EnableVote"]){
+            [overviewViewController setCanVote];
+        } else {
+            [overviewViewController addSong:message];
+        }
+    }
 }
 
 - (void)server:(Server *)server lostConnection:(NSDictionary *)errorDict {

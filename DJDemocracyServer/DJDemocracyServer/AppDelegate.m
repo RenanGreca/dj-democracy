@@ -213,75 +213,19 @@ NSInteger voteSort(id num1, id num2, void *context) {
 
 - (IBAction)sendSongs:(id)sender; {
     NSLog(@"Sending songs...");
-    
-    //EyeTunes *eyetunes = [EyeTunes sharedInstance];
-    
-    //ETPlaylist *library = [eyetunes libraryPlaylist];
     NSError *error = nil;
+    NSData *data;
     
-    //NSUInteger i = 0;
-    for (DJTrack *track in self.playlist) {
-        //DJTrack *djTrack = [DJTrack newFromTrack:track];
-        //NSLog(@"2. %ld", (long)djTrack.voteCount);
-        NSData *data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
-        
-        
-        //[encoder encodeObject:self->inoutTrack forKey:@"track"];
-        //[NSKeyedArchiver archivedDataWithRootObject:track];
-        
-        //[[track name] dataUsingEncoding:NSUTF8StringEncoding];
-        [NSThread sleepForTimeInterval:0.01f];
-        
-        //NSLog(@"Sending song %@", track.title);
-        
-        [self.server sendData:data error:&error];
-    }
-}
-
-- (IBAction)sendSongsAgain:(id)sender; {
-    NSError *error = nil;
-    NSData *data = nil;
     for (DJTrack *track in self.playlist) {
         data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
         [NSThread sleepForTimeInterval:0.01f];
         [self.server sendData:data error:&error];
     }
     [NSThread sleepForTimeInterval:0.01f];
-    //data = [@"Done" dataUsingEncoding:NSUTF8StringEncoding];
-    //[self.server sendData:data error:&error];
+    data = [@"EnableVote" dataUsingEncoding:NSUTF8StringEncoding];
+    [self.server sendData:data error:&error];
 }
 
-/*
-// Encodes track title, artist and location into a string so we can send it to the client
-- (NSString *)encodeTrack:(DJTrack *)track; {
-    NSLog(@"%ld", (long)[track getVoteCount]);
-    
-    NSString *str = @"";
-    
-    if (track.title.length > 0) {
-        str = [str stringByAppendingString:track.title];
-    }
-    str = [str stringByAppendingString:@";"];
-    
-    if (track.artist.length > 0) {
-        str = [str stringByAppendingString:track.artist];
-    }
-    str = [str stringByAppendingString:@";"];
-    
-    if (track.location.length > 0) {
-        str = [str stringByAppendingString:track.location];
-    }
-    str = [str stringByAppendingString:@";"];
-    
-    NSString *voteCount = [NSString stringWithFormat:@"%lu", [track getVoteCount]];
-    if (voteCount.length > 0) {
-        str = [str stringByAppendingString:voteCount];
-    }
-    str = [str stringByAppendingString:@";"];
-    
-    return str;
-}
-*/
 
 - (IBAction)startServer:(id)sender; {
     if (selectedPlaylist == -1) {
@@ -369,7 +313,7 @@ NSInteger voteSort(id num1, id num2, void *context) {
     if(nil != message || [message length] > 0) {
         self.message = message;
         [self increaseVoteCount:message];
-        [self sendSongsAgain:nil];
+        [self sendSongs:self];
         //NSLog(message);
     } else {
         self.message = @"no data received";

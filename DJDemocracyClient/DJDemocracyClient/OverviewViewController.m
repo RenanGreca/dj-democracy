@@ -17,12 +17,6 @@
 @implementation OverviewViewController
 
 - (void)loadInitialData {
-    /*[self.songs addObject:[DJTrack newTrackCalled:@"Bohemian Rhapsody" by:@"Queen" at:@"..."]];
-    [self.songs addObject:[DJTrack newTrackCalled:@"Let It Be" by:@"The Beatles" at:@"..."]];
-    [self.songs addObject:[DJTrack newTrackCalled:@"Smoke on the Water" by:@"Deep Purple" at:@"..."]];
-    [self.songs addObject:[DJTrack newTrackCalled:@"Hey Jude" by:@"The Beatles" at:@"..."]];
-    [self.songs addObject:[DJTrack newTrackCalled:@"Lucy In The Sky With Diamonds" by:@"The Beatles" at:@"..."]];
-    */
     [self.tableView reloadData];
 }
 
@@ -80,17 +74,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
- /*   if (section == 0) {
-        if ([self.songs count] < 5)
-            return [self.songs count];
-        return [self.songs count];
-    } */
     if (self.showAll == TRUE) {
         return [self.songs count];
-    }else {
-        
+    } else {
         return MIN([self.songs count], 5); //magic number
-        };
+    };
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -104,30 +92,15 @@
     } else {
         NSError *error = nil;
         DJTrack *track = [self.songs objectAtIndex:indexPath.row];
-        NSString* str = @"";
         
         [track incVoteCount];
-        /*current method for compacting track to message
-        str = [str stringByAppendingString:[track getTitle]];
-        str = [str stringByAppendingString:@";"];
-        str = [str stringByAppendingString:[track getArtist]];
-        str = [str stringByAppendingString:@";"];
-        str = [str stringByAppendingString:[track getLocation]];
-        str = [str stringByAppendingString:@";"];
-        //#warning find out what to do here
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%lu",(long)[track voteCount]]];
-        str = [str stringByAppendingString:@";"]; */
+        NSData *data = [[track encodeTrack] dataUsingEncoding:NSUTF8StringEncoding];
     
-        str = [track encodeTrack];
-        
-        NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    
-        NSLog(@"sending data %@", data);
-        self.songs = [[NSMutableArray alloc] init];
+        [self.songs removeAllObjects];
     
         [tableView deselectRowAtIndexPath:indexPath animated: NO];
         [self.server sendData:data error:&error];
-        //self.canVote = NO;
+        self.canVote = NO;
     }
 }
 
