@@ -1,4 +1,4 @@
 dj-democracy
 ============
 
-Programming Practicum final project
+DJ Democracy is a combination of an iOS app and an OS X app that allows people attending a party to vote on what song they want to be played next.
